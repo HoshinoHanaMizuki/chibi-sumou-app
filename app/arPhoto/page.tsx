@@ -92,7 +92,7 @@ export default function ArPhoto() {
             if (context) {
                 context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
                 const dataUrl = canvas.toDataURL('image/png');
-                console.log("撮影された画像のデータURL: ", dataUrl);
+                alert(`撮影された画像のデータURL: ${dataUrl}`);
             }
         }
     };
