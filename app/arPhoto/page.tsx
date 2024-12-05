@@ -52,7 +52,9 @@ export default function ArPhoto() {
         const startCamera = async () => {
             try {
                 // カメラを起動してこれをcanvasに描画するため取得
-                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { facingMode: {exact:"environment" }}
+                 });
                 if (videoRef.current) {
                     videoRef.current.srcObject = stream;
                 }
