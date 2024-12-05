@@ -1,171 +1,116 @@
 "use client";
-import Image from 'next/image';
-import { useEffect, useState, useRef } from 'react';
+import NavBar from "../features/common/Navbar/Navbar";
+import { useRef,useEffect,useState } from "react";
+export default function ArPhoto() {
+    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    // const [currentGirlImage,setCurrentGirlImage] = useState<string | null>(null);
+    // const [currentBroImage,setCurrentBroImage] = useState<string | null>(null);
+    // const [currentSisImage,setCurrentSisImage] = useState<string | null>(null);
+    // const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
+    const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
+    // // キャラクター画像のリスト
+    // const girlImageList : string[] = [
+    //     "/images/girl/normal.png",
+    //     "/images/girl/normalWithOp.png",
+    //     "/images/girl/puku.png",
+    //     "/images/girl/winkWithOp.png",
+    //     "/images/girl/winkWithCl.png"
+    // ];
+    // const brotherBirdImageList : string[] = [
+    //     "/images/brotherBird/normal.png",
+    //     "/images/brotherBird/cool.png",
+    //     "/images/brotherBird/shiny.png"
+    // ];
+    // const sisterBirdImageList : string[] = [
+    //     "/images/sisterBird/open.png",
+    //     "/images/sisterBird/close.png",
+    //     "/images/sisterBird/shock.png",
+    //     "/images/sisterBird/smile.png"
+    // ];
+    // const battleGodImageList : string[] = [
+    //     "/images/battleGod/normal.PNG",
+    //     "/images/battleGod/normalOura.PNG",
+    //     "/images/battleGod/normalFull.PNG",
+    //     "/images/battleGod/normalRock.PNG",
+    //     "/images/battleGod/smile.PNG",
+    //     "/images/battleGod/smileOura.PNG",
+    //     "/images/battleGod/smileFull.PNG",
+    //     "/images/battleGod/smileRock.PNG",
+    // ];
 
-export default function CameraPage() {
-    const [cameraStream, setCameraStream] = useState<MediaStream | null>(null);
-    const [error, setError] = useState<string | null>(null);
-    const [selectedCharactor, setSelectedCharactor] = useState<string | null>(null);
-    const [charactors, setCharactors] = useState<string[]>([]);
-    const videoRef = useRef<HTMLVideoElement | null>(null);
-    const canvasRef = useRef<HTMLCanvasElement | null>(null);
-    const charactorRef = useRef<HTMLImageElement | null>(null);
+    useEffect(()=>{
+        setDeviceSize({width:window.innerWidth,height:window.innerHeight});
+        if(!canvasRef.current) {
+            throw new Error("canvasRef is not defined");
+        }
+        if(!videoRef.current) {
+            throw new Error("videoRef is not defined");
+        }
 
-    useEffect(() => {
+        // スマホのカメラを起動する関数
+        const startCamera = async () => {
+            try {
+                // カメラを起動してこれをcanvasに描画するため取得
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                if (videoRef.current) {
+                    videoRef.current.srcObject = stream;
+                }
+            } catch (err) {
+                console.error("Error accessing camera: ", err);
+            }
+        }
         startCamera();
-        loadCharactors();
-    }, []);
 
-    const startCamera = async () => {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            setCameraStream(stream);
-        } catch (err) {
-            console.error("Error accessing camera: ", err);
-            setError("カメラのアクセス中にエラーが発生しました。");
+        const canvas = canvasRef.current;
+        const context = canvas.getContext("2d");
+
+        if (!context) {
+            throw new Error("context is not defined");
         }
-    };
 
-    const stopCamera = () => {
-        if (cameraStream) {
-            cameraStream.getTracks().forEach(track => track.stop());
-            setCameraStream(null);
-        }
-    };
+        const drawFrame = () => {
+            if (videoRef.current) {
+                context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+            }
+            requestAnimationFrame(drawFrame);
+        };
 
-    const loadCharactors = () => {
-        // ここでimage/charactorsフォルダからキャラクター画像を読み込みます
-        // 例として、固定のキャラクター画像を使用します
-        setCharactors([
-            "/images/charactors/brotherBird/cool.png",
-            "/images/charactors/brotherBird/normal.png",
-            "/images/charactors/sisterBird/open.png",
-            "/images/charactors/sisterBird/shock.png",
-            "/images/charactors/sisterBird/smile.png"
-        ]);
-    };
+        drawFrame();
+
+    },[]);
+    // const setCharaImage = (charaImageLink: string,setImageLink:any) => {
+    //     setImageLink(charaImageLink);
+    // }
 
     const handleCapture = () => {
         if (canvasRef.current && videoRef.current) {
             const canvas = canvasRef.current;
             const context = canvas.getContext('2d');
             if (context) {
-                // カメラの映像をキャンバスに描画
                 context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-                // キャラクターをキャンバスに描画
-                if (selectedCharactor && charactorRef.current) {
-                    const img = charactorRef.current;
-                    context.drawImage(img, img.offsetLeft, img.offsetTop, img.width, img.height);
-                }
-                // 画像として保存
                 const dataUrl = canvas.toDataURL('image/png');
                 console.log("撮影された画像のデータURL: ", dataUrl);
-                // ここでdataUrlを使用して画像を保存したり表示したりできます
             }
         }
     };
-
-    const handleCharactorSelect = (charactor: string) => {
-        setSelectedCharactor(charactor);
-    };
-
-    useEffect(() => {
-        return () => {
-            stopCamera();
-        };
-    }, [cameraStream]);
-
-    useEffect(() => {
-        if (selectedCharactor && charactorRef.current) {
-            const img = charactorRef.current;
-            let isDragging = false;
-            let startX = 0;
-            let startY = 0;
-
-            const handleMouseDown = (e: MouseEvent) => {
-                isDragging = true;
-                startX = e.clientX - img.offsetLeft;
-                startY = e.clientY - img.offsetTop;
-            };
-
-            const handleMouseMove = (e: MouseEvent) => {
-                if (isDragging) {
-                    img.style.left = `${e.clientX - startX}px`;
-                    img.style.top = `${e.clientY - startY}px`;
-                }
-            };
-
-            const handleMouseUp = () => {
-                isDragging = false;
-            };
-
-            img.addEventListener('mousedown', handleMouseDown);
-            document.addEventListener('mousemove', handleMouseMove);
-            document.addEventListener('mouseup', handleMouseUp);
-
-            return () => {
-                img.removeEventListener('mousedown', handleMouseDown);
-                document.removeEventListener('mousemove', handleMouseMove);
-                document.removeEventListener('mouseup', handleMouseUp);
-            };
-        }
-    }, [selectedCharactor]);
-
+    // 開かれた瞬間にカメラを起動。　カメラの映像はcanvasに描画される　常に更新。　
+    // canvas内にはキャラクター画像も配置。　撮影ボタンでスクリーンショットを撮り保存。
     return (
-        <div className="cameraPage">
-            {error && <div className="error">{error}</div>}
-            {cameraStream && (
-                <div className="cameraContainer">
-                    <video
-                        autoPlay
-                        playsInline
-                        muted
-                        ref={videoRef}
-                        style={{ width: '100%', height: 'auto' }}
-                    />
-                    <canvas
-                        ref={canvasRef}
-                        style={{ display: 'none' }}
-                        width={window.innerWidth}
-                        height={window.innerHeight}
-                    />
-                    <div className="charactorSelection">
-                        {charactors.map((charactor, index) => (
-                            <img
-                                key={index}
-                                src={charactor}
-                                alt={`Charactor ${index + 1}`}
-                                onClick={() => handleCharactorSelect(charactor)}
-                                style={{ width: '50px', height: '50px', margin: '5px', cursor: 'pointer' }}
-                            />
-                        ))}
-                    </div>
-                    {selectedCharactor && (
-                        <div
-                            ref={charactorRef}
-                            style={{
-                                position: 'absolute',
-                                left: '50%',
-                                top: '50%',
-                                transform: 'translate(-50%, -50%)',
-                                width: '100px',
-                                height: '100px',
-                                cursor: 'move'
-                            }}
-                        >
-                            <Image
-                                src={selectedCharactor}
-                                alt="Selected Charactor"
-                                layout="fill"
-                                objectFit="contain"
-                            />
-                        </div>
-                    )}
-                    <div className="customizationUI">
-                        <button onClick={handleCapture}>撮影</button>
-                    </div>
-                </div>
-            )}
-        </div>
+        <>
+            <div className="allContainer">
+                <NavBar />
+                {/* スマホの縦、横サイズのキャンバスを作成 */}
+                <video ref={videoRef} autoPlay={true} playsInline={true} muted={true} style={{display:"none"}}/>
+                <canvas ref={canvasRef} width={deviceSize.width} height={deviceSize.height}/>
+                <button
+                    onClick={handleCapture}
+                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+                >
+                    撮影
+                </button>
+            </div>
+            
+        </>
     );
 }
