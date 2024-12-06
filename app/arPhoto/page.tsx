@@ -1,7 +1,7 @@
 "use client";
-import Image from "next/image";
+// import Image from "next/image";
 import NavBar from "../features/common/Navbar/Navbar";
-import { useRef, useEffect, useState, Dispatch, SetStateAction } from "react";
+import { useRef, useEffect, useState} from "react";
 export default function ArPhoto() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -124,7 +124,7 @@ export default function ArPhoto() {
                 <NavBar />
                 {/* スマホの縦、横サイズのキャンバスを作成 */}
                 <video ref={videoRef} autoPlay={true} playsInline={true} muted={true} style={{ display: "none" }} />
-                <canvas ref={canvasRef} width={deviceSize.width} height={deviceSize.height} />
+                <canvas ref={canvasRef} />
                 <div className="editingMenu fixed bottom-0 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
                     {/* キャラクター設定UIをここに追加 */}
                     <div className="charactorSettingUI flex">
