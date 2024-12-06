@@ -99,7 +99,7 @@ export default function ArPhoto() {
                     if (!imageSrc) return;
     
                     const img = new window.Image();
-                    img.src = imageSrc;
+                    img.src = `../../public${imageSrc}`;
                     img.onload = () => {
                         context.drawImage(img, x, y, width, height);
                     };
