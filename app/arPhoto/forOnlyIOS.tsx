@@ -101,7 +101,8 @@ export default function ArPhoto() {
             <div className="allContainer relative">
                 <NavBar />
                 {/* スマホの縦、横サイズのキャンバスを作成 */}
-                <video ref={videoRef} autoPlay={true} playsInline={true} muted={true} />
+                <div className="videoContainer hidden"><video ref={videoRef} autoPlay={true} playsInline={true} muted={true} /></div>
+                
                 <canvas ref={canvasRef} width={deviceSize.width} height={deviceSize.height} />
                 <div className="editingMenu fixed bottom-0 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
                     {/* キャラクター設定UIをここに追加 */}
