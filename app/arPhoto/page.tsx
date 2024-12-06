@@ -53,14 +53,27 @@ export default function ArPhoto() {
         const startCamera = async () => {
             try {
                 // カメラを起動してこれをcanvasに描画するため取得
-                const stream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { facingMode: {exact:"environment" }}
-                 });
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: "environment" } // 外カメラを指定
+                });
                 if (videoRef.current) {
                     videoRef.current.srcObject = stream;
                 }
             } catch (err) {
                 console.error("Error accessing camera: ", err);
+                // エラーハンドリング: 外カメラが利用できない場合、内カメラを使用
+                if ((err as Error).name === "OverconstrainedError") {
+                    try {
+                        const stream = await navigator.mediaDevices.getUserMedia({
+                            video: { facingMode: "user" } // 内カメラを指定
+                        });
+                        if (videoRef.current) {
+                            videoRef.current.srcObject = stream;
+                        }
+                    } catch (innerErr) {
+                        console.error("Error accessing camera: ", innerErr);
+                    }
+                }
             }
         }
         startCamera();
@@ -134,16 +147,16 @@ export default function ArPhoto() {
                     {/* キャラクター設定UIをここに追加 */}
                     <div className="charactorSettingUI flex">
                         {brotherBirdImageList.map((image,index)=>(
-                            <Image alt="" key={index} src={image} width={deviceSize.width/7} onClick={()=>setCharaImage(image,setCurrentBroImage)} />
+                            <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentBroImage)} />
                         ))}
                         {sisterBirdImageList.map((image,index)=>(
-                            <Image alt="" key={index} src={image} width={deviceSize.width/7} onClick={()=>setCharaImage(image,setCurrentSisImage)} />
+                            <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentSisImage)} />
                         ))}
                         {girlImageList.map((image,index)=>(
-                            <Image alt="" key={index} src={image} width={deviceSize.width/7} onClick={()=>setCharaImage(image,setCurrentGirlImage)} />
+                            <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentGirlImage)} />
                         ))}
                         {battleGodImageList.map((image,index)=>(
-                            <Image alt="" key={index} src={image} width={deviceSize.width/7} onClick={()=>setCharaImage(image,setCurrentGodImage)} />
+                            <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentGodImage)} />
                         ))}
                     </div>
                     キャラクター設定UI
