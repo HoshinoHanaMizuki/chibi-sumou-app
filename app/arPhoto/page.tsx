@@ -4,40 +4,40 @@ import { useRef,useEffect,useState } from "react";
 export default function ArPhoto() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
-    // const [currentGirlImage,setCurrentGirlImage] = useState<string | null>(null);
-    // const [currentBroImage,setCurrentBroImage] = useState<string | null>(null);
-    // const [currentSisImage,setCurrentSisImage] = useState<string | null>(null);
-    // const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
+    const [currentGirlImage,setCurrentGirlImage] = useState<string | null>(null);
+    const [currentBroImage,setCurrentBroImage] = useState<string | null>(null);
+    const [currentSisImage,setCurrentSisImage] = useState<string | null>(null);
+    const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
     const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
     // // キャラクター画像のリスト
-    // const girlImageList : string[] = [
-    //     "/images/girl/normal.png",
-    //     "/images/girl/normalWithOp.png",
-    //     "/images/girl/puku.png",
-    //     "/images/girl/winkWithOp.png",
-    //     "/images/girl/winkWithCl.png"
-    // ];
-    // const brotherBirdImageList : string[] = [
-    //     "/images/brotherBird/normal.png",
-    //     "/images/brotherBird/cool.png",
-    //     "/images/brotherBird/shiny.png"
-    // ];
-    // const sisterBirdImageList : string[] = [
-    //     "/images/sisterBird/open.png",
-    //     "/images/sisterBird/close.png",
-    //     "/images/sisterBird/shock.png",
-    //     "/images/sisterBird/smile.png"
-    // ];
-    // const battleGodImageList : string[] = [
-    //     "/images/battleGod/normal.PNG",
-    //     "/images/battleGod/normalOura.PNG",
-    //     "/images/battleGod/normalFull.PNG",
-    //     "/images/battleGod/normalRock.PNG",
-    //     "/images/battleGod/smile.PNG",
-    //     "/images/battleGod/smileOura.PNG",
-    //     "/images/battleGod/smileFull.PNG",
-    //     "/images/battleGod/smileRock.PNG",
-    // ];
+    const girlImageList : string[] = [
+        "/images/girl/normal.png",
+        "/images/girl/normalWithOp.png",
+        "/images/girl/puku.png",
+        "/images/girl/winkWithOp.png",
+        "/images/girl/winkWithCl.png"
+    ];
+    const brotherBirdImageList : string[] = [
+        "/images/brotherBird/normal.png",
+        "/images/brotherBird/cool.png",
+        "/images/brotherBird/shiny.png"
+    ];
+    const sisterBirdImageList : string[] = [
+        "/images/sisterBird/open.png",
+        "/images/sisterBird/close.png",
+        "/images/sisterBird/shock.png",
+        "/images/sisterBird/smile.png"
+    ];
+    const battleGodImageList : string[] = [
+        "/images/battleGod/normal.PNG",
+        "/images/battleGod/normalOura.PNG",
+        "/images/battleGod/normalFull.PNG",
+        "/images/battleGod/normalRock.PNG",
+        "/images/battleGod/smile.PNG",
+        "/images/battleGod/smileOura.PNG",
+        "/images/battleGod/smileFull.PNG",
+        "/images/battleGod/smileRock.PNG",
+    ];
 
     useEffect(()=>{
         setDeviceSize({width:window.innerWidth,height:window.innerHeight});
@@ -81,9 +81,9 @@ export default function ArPhoto() {
         drawFrame();
 
     },[]);
-    // const setCharaImage = (charaImageLink: string,setImageLink:any) => {
-    //     setImageLink(charaImageLink);
-    // }
+    const setCharaImage = (charaImageLink: string,setImageLink:any) => {
+        setImageLink(charaImageLink);
+    }
 
     const handleCapture = () => {
         if (canvasRef.current && videoRef.current) {
@@ -100,19 +100,19 @@ export default function ArPhoto() {
     // canvas内にはキャラクター画像も配置。　撮影ボタンでスクリーンショットを撮り保存。
     return (
         <>
-            <div className="allContainer">
+            <div className="allContainer relative">
                 <NavBar />
                 {/* スマホの縦、横サイズのキャンバスを作成 */}
-                <video ref={videoRef} autoPlay={true} playsInline={true} muted={true} style={{display:"none"}}/>
-                <canvas ref={canvasRef} width={deviceSize.width} height={deviceSize.height}/>
-                <button
-                    onClick={handleCapture}
-                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-                >
+                <video ref={videoRef} autoPlay={true} playsInline={true} muted={true} style={{ display: "none" }} />
+                <canvas ref={canvasRef} width={deviceSize.width} height={deviceSize.height} />
+                <div className="charactorSettingUI fixed bottom-0 left-0 right-0 bg-white p-4 flex justify-center space-x-4">
+                    {/* キャラクター設定UIをここに追加 */}
+                    
+                </div>
+                <button onClick={handleCapture} className="px-4 py-2 bg-blue-500 text-white rounded">
                     撮影
                 </button>
             </div>
-            
         </>
     );
 }
