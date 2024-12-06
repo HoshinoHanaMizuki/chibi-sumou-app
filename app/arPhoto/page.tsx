@@ -1,7 +1,7 @@
 "use client";
 // import Image from "next/image";
 import NavBar from "../features/common/Navbar/Navbar";
-import { useRef, useEffect, useState} from "react";
+import { useRef, useEffect} from "react";
 export default function ArPhoto() {
     // const canvasRef = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
