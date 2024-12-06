@@ -59,6 +59,7 @@ export default function ArPhoto() {
                 if (videoRef.current) {
                     videoRef.current.srcObject = stream;
                 }
+                alert("カメラが起動しました");
             } catch (err) {
                 console.error("Error accessing camera: ", err);
                 // エラーハンドリング: 外カメラが利用できない場合、内カメラを使用
@@ -97,6 +98,8 @@ export default function ArPhoto() {
     },[]);
     const setCharaImage = (charaImageLink: string,setImageLink:Dispatch<SetStateAction<string | null>>) => {
         setImageLink(charaImageLink);
+        console.log(charaImageLink);
+        
     }
 
     const handleCapture = () => {
@@ -106,28 +109,7 @@ export default function ArPhoto() {
             if (context) {
                 // カメラ映像をキャンバスに描画
                 context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-    
-                // 各キャラクター画像を描画
-                const drawCharacter = (imageSrc: string | null, x: number, y: number, width: number, height: number) => {
-                    if (!imageSrc) return;
-    
-                    const img = new window.Image();
-                    img.src = `../../public${imageSrc}`;
-                    img.onload = () => {
-                        context.drawImage(img, x, y, width, height);
-                    };
-                };
-    
-                const characterSize = 100; // キャラクター画像のサイズ
-                const centerX = canvas.width / 2 - characterSize / 2;
-                const centerY = canvas.height / 2 - characterSize / 2;
-    
-                // 各キャラクターをキャンバスに描画
-                drawCharacter(currentBroImage, centerX - 150, centerY, characterSize, characterSize);
-                drawCharacter(currentSisImage, centerX + 150, centerY, characterSize, characterSize);
-                drawCharacter(currentGirlImage, centerX, centerY - 150, characterSize, characterSize);
-                drawCharacter(currentGodImage, centerX, centerY + 150, characterSize, characterSize);
-    
+
                 // 最後にキャンバスを画像として保存
                 const dataUrl = canvas.toDataURL("image/png");
                 alert(`撮影された画像のデータURL: ${dataUrl}`);
