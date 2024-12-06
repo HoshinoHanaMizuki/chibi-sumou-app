@@ -1,15 +1,15 @@
 "use client";
 // import Image from "next/image";
 import NavBar from "../features/common/Navbar/Navbar";
-import { useRef, useEffect,useState} from "react";
+import { useRef, useEffect} from "react";
 export default function ArPhoto() {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
+    // const canvasRef = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     // const [currentGirlImage,setCurrentGirlImage] = useState<string | null>(null);
     // const [currentBroImage,setCurrentBroImage] = useState<string | null>(null);
     // const [currentSisImage,setCurrentSisImage] = useState<string | null>(null);
     // const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
-    const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
+    // const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
     // キャラクター画像のリスト
     // const girlImageList : string[] = [
     //     "/images/charactors/girl/normal.png",
@@ -41,13 +41,11 @@ export default function ArPhoto() {
     // ];
 
     useEffect(()=>{
-        setDeviceSize({width:window.innerWidth,height:window.innerHeight});
+        // setDeviceSize({width:window.innerWidth,height:window.innerHeight});
         if(!videoRef.current) {
             throw new Error("videoRef is not defined");
         }
-        if(!canvasRef.current) {
-            throw new Error("canvasRef is not defined");
-        }
+
         // スマホのカメラを起動する関数
         const startCamera = async () => {
             try {
@@ -64,21 +62,6 @@ export default function ArPhoto() {
             }
         }
         startCamera();
-        const canvas = canvasRef.current;
-        const context = canvas.getContext("2d");
-        if (!context) {
-            throw new Error("context is not defined");
-        }
-
-        const drawFrame = () => {
-            if (videoRef.current) {
-                context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-            }
-            requestAnimationFrame(drawFrame);
-        };
-
-        drawFrame();
-
     },[]);
 
     return (
@@ -87,7 +70,6 @@ export default function ArPhoto() {
                 <NavBar />
                 {/* スマホの縦、横サイズのキャンバスを作成 */}
                 <video ref={videoRef} autoPlay={true} playsInline={true} muted={true} />
-                <canvas ref={canvasRef} width={deviceSize.width} height={deviceSize.height} />
             </div>
         </>
     );
