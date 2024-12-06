@@ -96,11 +96,11 @@ export default function ArPhoto() {
         drawFrame();
 
     },[]);
-    const setCharaImage = (charaImageLink: string,setImageLink:Dispatch<SetStateAction<string | null>>) => {
-        setImageLink(charaImageLink);
-        console.log(charaImageLink);
+    // const setCharaImage = (charaImageLink: string,setImageLink:Dispatch<SetStateAction<string | null>>) => {
+    //     setImageLink(charaImageLink);
+    //     console.log(charaImageLink);
         
-    }
+    // }
 
     const handleCapture = () => {
         if (canvasRef.current && videoRef.current) {
