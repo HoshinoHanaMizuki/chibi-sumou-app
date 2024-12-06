@@ -5,40 +5,40 @@ import { useRef, useEffect, useState, Dispatch, SetStateAction } from "react";
 export default function ArPhoto() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
-    const [currentGirlImage,setCurrentGirlImage] = useState<string | null>(null);
-    const [currentBroImage,setCurrentBroImage] = useState<string | null>(null);
-    const [currentSisImage,setCurrentSisImage] = useState<string | null>(null);
-    const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
+    // const [currentGirlImage,setCurrentGirlImage] = useState<string | null>(null);
+    // const [currentBroImage,setCurrentBroImage] = useState<string | null>(null);
+    // const [currentSisImage,setCurrentSisImage] = useState<string | null>(null);
+    // const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
     const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
     // キャラクター画像のリスト
-    const girlImageList : string[] = [
-        "/images/charactors/girl/normal.png",
-        "/images/charactors/girl/normalWithOp.png",
-        "/images/charactors/girl/puku.png",
-        "/images/charactors/girl/winkWithOp.png",
-        "/images/charactors/girl/winkWithCl.png"
-    ];
-    const brotherBirdImageList : string[] = [
-        "/images/charactors/brotherBird/normal.png",
-        "/images/charactors/brotherBird/cool.png",
-        "/images/charactors/brotherBird/shiny.png"
-    ];
-    const sisterBirdImageList : string[] = [
-        "/images/charactors/sisterBird/open.png",
-        "/images/charactors/sisterBird/close.png",
-        "/images/charactors/sisterBird/shock.png",
-        "/images/charactors/sisterBird/smile.png"
-    ];
-    const battleGodImageList : string[] = [
-        "/images/charactors/battleGod/normal.PNG",
-        "/images/charactors/battleGod/normalOura.PNG",
-        "/images/charactors/battleGod/normalFull.PNG",
-        "/images/charactors/battleGod/normalRock.PNG",
-        "/images/charactors/battleGod/smile.PNG",
-        "/images/charactors/battleGod/smileOura.PNG",
-        "/images/charactors/battleGod/smileFull.PNG",
-        "/images/charactors/battleGod/smileRock.PNG",
-    ];
+    // const girlImageList : string[] = [
+    //     "/images/charactors/girl/normal.png",
+    //     "/images/charactors/girl/normalWithOp.png",
+    //     "/images/charactors/girl/puku.png",
+    //     "/images/charactors/girl/winkWithOp.png",
+    //     "/images/charactors/girl/winkWithCl.png"
+    // ];
+    // const brotherBirdImageList : string[] = [
+    //     "/images/charactors/brotherBird/normal.png",
+    //     "/images/charactors/brotherBird/cool.png",
+    //     "/images/charactors/brotherBird/shiny.png"
+    // ];
+    // const sisterBirdImageList : string[] = [
+    //     "/images/charactors/sisterBird/open.png",
+    //     "/images/charactors/sisterBird/close.png",
+    //     "/images/charactors/sisterBird/shock.png",
+    //     "/images/charactors/sisterBird/smile.png"
+    // ];
+    // const battleGodImageList : string[] = [
+    //     "/images/charactors/battleGod/normal.PNG",
+    //     "/images/charactors/battleGod/normalOura.PNG",
+    //     "/images/charactors/battleGod/normalFull.PNG",
+    //     "/images/charactors/battleGod/normalRock.PNG",
+    //     "/images/charactors/battleGod/smile.PNG",
+    //     "/images/charactors/battleGod/smileOura.PNG",
+    //     "/images/charactors/battleGod/smileFull.PNG",
+    //     "/images/charactors/battleGod/smileRock.PNG",
+    // ];
 
     useEffect(()=>{
         setDeviceSize({width:window.innerWidth,height:window.innerHeight});
@@ -128,7 +128,7 @@ export default function ArPhoto() {
                 <div className="editingMenu fixed bottom-0 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
                     {/* キャラクター設定UIをここに追加 */}
                     <div className="charactorSettingUI flex">
-                        {brotherBirdImageList.map((image,index)=>(
+                        {/* {brotherBirdImageList.map((image,index)=>(
                             <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentBroImage)} />
                         ))}
                         {sisterBirdImageList.map((image,index)=>(
@@ -139,7 +139,7 @@ export default function ArPhoto() {
                         ))}
                         {battleGodImageList.map((image,index)=>(
                             <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentGodImage)} />
-                        ))}
+                        ))} */}
                     </div>
                     キャラクター設定UI
                     <button onClick={handleCapture} className="px-4 py-2 bg-blue-500 text-white rounded">
