@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import NavBar from "../features/common/Navbar/Navbar";
-import { useRef,useEffect,useState } from "react";
+import { useRef, useEffect, useState, Dispatch, SetStateAction } from "react";
 export default function ArPhoto() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -82,17 +82,41 @@ export default function ArPhoto() {
         drawFrame();
 
     },[]);
-    const setCharaImage = (charaImageLink: string,setImageLink:any) => {
+    const setCharaImage = (charaImageLink: string,setImageLink:Dispatch<SetStateAction<string | null>>) => {
         setImageLink(charaImageLink);
     }
 
     const handleCapture = () => {
         if (canvasRef.current && videoRef.current) {
             const canvas = canvasRef.current;
-            const context = canvas.getContext('2d');
+            const context = canvas.getContext("2d");
             if (context) {
+                // カメラ映像をキャンバスに描画
                 context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-                const dataUrl = canvas.toDataURL('image/png');
+    
+                // 各キャラクター画像を描画
+                const drawCharacter = (imageSrc: string | null, x: number, y: number, width: number, height: number) => {
+                    if (!imageSrc) return;
+    
+                    const img = new window.Image();
+                    img.src = imageSrc;
+                    img.onload = () => {
+                        context.drawImage(img, x, y, width, height);
+                    };
+                };
+    
+                const characterSize = 100; // キャラクター画像のサイズ
+                const centerX = canvas.width / 2 - characterSize / 2;
+                const centerY = canvas.height / 2 - characterSize / 2;
+    
+                // 各キャラクターをキャンバスに描画
+                drawCharacter(currentBroImage, centerX - 150, centerY, characterSize, characterSize);
+                drawCharacter(currentSisImage, centerX + 150, centerY, characterSize, characterSize);
+                drawCharacter(currentGirlImage, centerX, centerY - 150, characterSize, characterSize);
+                drawCharacter(currentGodImage, centerX, centerY + 150, characterSize, characterSize);
+    
+                // 最後にキャンバスを画像として保存
+                const dataUrl = canvas.toDataURL("image/png");
                 alert(`撮影された画像のデータURL: ${dataUrl}`);
             }
         }
