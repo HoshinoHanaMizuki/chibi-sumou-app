@@ -12,32 +12,32 @@ export default function ArPhoto() {
     const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
     // キャラクター画像のリスト
     const girlImageList : string[] = [
-        "/images/girl/normal.png",
-        "/images/girl/normalWithOp.png",
-        "/images/girl/puku.png",
-        "/images/girl/winkWithOp.png",
-        "/images/girl/winkWithCl.png"
+        "/images/charactors/girl/normal.png",
+        "/images/charactors/girl/normalWithOp.png",
+        "/images/charactors/girl/puku.png",
+        "/images/charactors/girl/winkWithOp.png",
+        "/images/charactors/girl/winkWithCl.png"
     ];
     const brotherBirdImageList : string[] = [
-        "/images/brotherBird/normal.png",
-        "/images/brotherBird/cool.png",
-        "/images/brotherBird/shiny.png"
+        "/images/charactors/brotherBird/normal.png",
+        "/images/charactors/brotherBird/cool.png",
+        "/images/charactors/brotherBird/shiny.png"
     ];
     const sisterBirdImageList : string[] = [
-        "/images/sisterBird/open.png",
-        "/images/sisterBird/close.png",
-        "/images/sisterBird/shock.png",
-        "/images/sisterBird/smile.png"
+        "/images/charactors/sisterBird/open.png",
+        "/images/charactors/sisterBird/close.png",
+        "/images/charactors/sisterBird/shock.png",
+        "/images/charactors/sisterBird/smile.png"
     ];
     const battleGodImageList : string[] = [
-        "/images/battleGod/normal.PNG",
-        "/images/battleGod/normalOura.PNG",
-        "/images/battleGod/normalFull.PNG",
-        "/images/battleGod/normalRock.PNG",
-        "/images/battleGod/smile.PNG",
-        "/images/battleGod/smileOura.PNG",
-        "/images/battleGod/smileFull.PNG",
-        "/images/battleGod/smileRock.PNG",
+        "/images/charactors/battleGod/normal.PNG",
+        "/images/charactors/battleGod/normalOura.PNG",
+        "/images/charactors/battleGod/normalFull.PNG",
+        "/images/charactors/battleGod/normalRock.PNG",
+        "/images/charactors/battleGod/smile.PNG",
+        "/images/charactors/battleGod/smileOura.PNG",
+        "/images/charactors/battleGod/smileFull.PNG",
+        "/images/charactors/battleGod/smileRock.PNG",
     ];
 
     useEffect(()=>{
@@ -130,9 +130,9 @@ export default function ArPhoto() {
                 {/* スマホの縦、横サイズのキャンバスを作成 */}
                 <video ref={videoRef} autoPlay={true} playsInline={true} muted={true} style={{ display: "none" }} />
                 <canvas ref={canvasRef} width={deviceSize.width} height={deviceSize.height} />
-                <div className="editingMenu fixed bottom-0 left-0 right-0 p-4 flex flex-row justify-center space-x-4">
+                <div className="editingMenu fixed bottom-0 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
                     {/* キャラクター設定UIをここに追加 */}
-                    <div className="charactorSettingUI">
+                    <div className="charactorSettingUI flex">
                         {brotherBirdImageList.map((image,index)=>(
                             <Image alt="" key={index} src={image} width={deviceSize.width/7} onClick={()=>setCharaImage(image,setCurrentBroImage)} />
                         ))}
