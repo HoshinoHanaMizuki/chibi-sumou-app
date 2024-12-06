@@ -3,7 +3,7 @@
 import NavBar from "../features/common/Navbar/Navbar";
 import { useRef, useEffect, useState} from "react";
 export default function ArPhoto() {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
+    // const canvasRef = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     // const [currentGirlImage,setCurrentGirlImage] = useState<string | null>(null);
     // const [currentBroImage,setCurrentBroImage] = useState<string | null>(null);
@@ -42,9 +42,6 @@ export default function ArPhoto() {
 
     useEffect(()=>{
         setDeviceSize({width:window.innerWidth,height:window.innerHeight});
-        if(!canvasRef.current) {
-            throw new Error("canvasRef is not defined");
-        }
         if(!videoRef.current) {
             throw new Error("videoRef is not defined");
         }
