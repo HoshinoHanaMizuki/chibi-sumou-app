@@ -51,29 +51,19 @@ export default function ArPhoto() {
 
         // スマホのカメラを起動する関数
         const startCamera = async () => {
-            try {
-                // カメラを起動してこれをcanvasに描画するため取得
+            try{
                 const stream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: "environment" } // 外カメラを指定
+                    video:{
+                        facingMode:"environment",
+                        width:deviceSize.width,height:deviceSize.height},
+                    audio:false
                 });
-                if (videoRef.current) {
+                if(videoRef.current){
                     videoRef.current.srcObject = stream;
                 }
-            } catch (err) {
-                console.error("Error accessing camera: ", err);
-                // エラーハンドリング: 外カメラが利用できない場合、内カメラを使用
-                if ((err as Error).name === "OverconstrainedError") {
-                    try {
-                        const stream = await navigator.mediaDevices.getUserMedia({
-                            video: { facingMode: "user" } // 内カメラを指定
-                        });
-                        if (videoRef.current) {
-                            videoRef.current.srcObject = stream;
-                        }
-                    } catch (innerErr) {
-                        console.error("Error accessing camera: ", innerErr);
-                    }
-                }
+            }
+            catch(err){
+                console.error(err);
             }
         }
         startCamera();
