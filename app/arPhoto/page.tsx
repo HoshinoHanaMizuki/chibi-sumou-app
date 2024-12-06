@@ -105,8 +105,9 @@ export default function ArPhoto() {
                 {/* スマホの縦、横サイズのキャンバスを作成 */}
                 <video ref={videoRef} autoPlay={true} playsInline={true} muted={true} style={{ display: "none" }} />
                 <canvas ref={canvasRef} width={deviceSize.width} height={deviceSize.height} />
-                <div className="charactorSettingUI fixed bottom-0 left-0 right-0 bg-white p-4 flex justify-center space-x-4">
+                <div className="editingMenu fixed bottom-0 left-0 right-0 p-4 flex justify-center space-x-4">
                     {/* キャラクター設定UIをここに追加 */}
+                    <div className="charactorSettingUI"></div>
                     キャラクター設定UI
                     <button onClick={handleCapture} className="px-4 py-2 bg-blue-500 text-white rounded">
                         撮影
