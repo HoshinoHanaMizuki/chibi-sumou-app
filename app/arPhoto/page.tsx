@@ -9,7 +9,7 @@ export default function ArPhoto() {
     // const [currentBroImage,setCurrentBroImage] = useState<string | null>(null);
     // const [currentSisImage,setCurrentSisImage] = useState<string | null>(null);
     // const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
-    const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
+    // const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
     // キャラクター画像のリスト
     // const girlImageList : string[] = [
     //     "/images/charactors/girl/normal.png",
@@ -41,7 +41,7 @@ export default function ArPhoto() {
     // ];
 
     useEffect(()=>{
-        setDeviceSize({width:window.innerWidth,height:window.innerHeight});
+        // setDeviceSize({width:window.innerWidth,height:window.innerHeight});
         if(!videoRef.current) {
             throw new Error("videoRef is not defined");
         }
