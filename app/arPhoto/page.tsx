@@ -192,17 +192,6 @@ export default function ArPhoto() {
         setIsEditingMenuVisible(!isEditingMenuVisible);
     };
 
-    const handleTouchStart = (e: React.TouchEvent<HTMLCanvasElement>, canvasType: string) => {
-        const touch = e.touches[0];
-        const rect = e.currentTarget.getBoundingClientRect();
-        const x = touch.clientX - rect.left;
-        const y = touch.clientY - rect.top;
-        setPositions((prev) => ({
-            ...prev,
-            [canvasType]: { x: x - window.innerWidth * 0.35, y: y - window.innerHeight * 0.35 }
-        }));
-    };
-
     return (
         <>
             <div className="allContainer relative">
