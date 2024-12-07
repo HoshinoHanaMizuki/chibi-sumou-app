@@ -1,9 +1,7 @@
 // "use client";
 // // import Image from "next/image";
 // import NavBar from "../features/common/Navbar/Navbar";
-// import { useRef, useEffect, useState } from "react";
-// // import Image from "next/image";
-
+// import { useRef, useEffect,useState} from "react";
 // export default function ArPhoto() {
 //     const canvasRef_video = useRef<HTMLCanvasElement>(null);
 //     const canvasRef_sisterBird = useRef<HTMLCanvasElement>(null);
@@ -12,34 +10,35 @@
 //     const canvasRef_god = useRef<HTMLCanvasElement>(null);
 //     const canvasRef_combine = useRef<HTMLCanvasElement>(null);
 //     const videoRef = useRef<HTMLVideoElement>(null);
-//     const [deviceSize, setDeviceSize] = useState<{ width: number, height: number }>({ width: 0, height: 0 });
+
 //     const [currentGirlImage,setCurrentGirlImage] = useState<string | null>(null);
-//     const [currentGirlPositonXY,setCurrentGirlPositonXY] = useState<{x:number,y:number}>({x:0,y:0});
 //     const [currentBrotherBirdImage,setCurrentBrotherBirdImage] = useState<string | null>(null);
 //     const [currentSisterBirdImage,setCurrentSisterBirdImage] = useState<string | null>(null);
 //     const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
-//     const [isEditingMenuVisible, setIsEditingMenuVisible] = useState<boolean>(true);
-//     const [selectedCanvas, setSelectedCanvas] = useState<HTMLCanvasElement | null>(null);
 
-//     const sisterBirdImageList: string[] = [
+//     const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
+
+//     const [isEditingMenuVisible, setIsEditingMenuVisible] = useState(true);
+//     // キャラクター画像のリスト
+//     const sisterBirdImageList : string[] = [
 //         "/images/charactors/sisterBird/open.png",
 //         "/images/charactors/sisterBird/close.png",
 //         "/images/charactors/sisterBird/shock.png",
 //         "/images/charactors/sisterBird/smile.png"
 //     ];
-//     const brotherBirdImageList: string[] = [
+//     const brotherBirdImageList : string[] = [
 //         "/images/charactors/brotherBird/normal.png",
 //         "/images/charactors/brotherBird/cool.png",
 //         "/images/charactors/brotherBird/shiny.png"
 //     ];
-//     const girlImageList: string[] = [
+//     const girlImageList : string[] = [
 //         "/images/charactors/girl/normal.png",
 //         "/images/charactors/girl/normalWithOp.png",
 //         "/images/charactors/girl/puku.png",
 //         "/images/charactors/girl/winkWithOp.png",
 //         "/images/charactors/girl/winkWithCl.png"
 //     ];
-//     const battleGodImageList: string[] = [
+//     const battleGodImageList : string[] = [
 //         "/images/charactors/battleGod/normal.PNG",
 //         "/images/charactors/battleGod/normalOura.PNG",
 //         "/images/charactors/battleGod/normalFull.PNG",
@@ -47,18 +46,18 @@
 //         "/images/charactors/battleGod/smile.PNG",
 //         "/images/charactors/battleGod/smileOura.PNG",
 //         "/images/charactors/battleGod/smileFull.PNG",
-//         "/images/charactors/battleGod/smileRock.PNG"
+//         "/images/charactors/battleGod/smileRock.PNG",
 //     ];
-
-//     useEffect(() => {
-//         setDeviceSize({ width: window.innerWidth, height: window.innerHeight });
-//         if (!videoRef.current) {
+    
+    
+//     useEffect(()=>{
+//         setDeviceSize({width:window.innerWidth,height:window.innerHeight});
+//         if(!videoRef.current) {
 //             throw new Error("videoRef is not defined");
 //         }
-//         if (!canvasRef_video.current) {
+//         if(!canvasRef_video.current) {
 //             throw new Error("canvasRef_video is not defined");
 //         }
-
 //         // スマホのカメラを起動する関数
 //         const startCamera = async () => {
 //             try {
@@ -75,38 +74,36 @@
 //             }
 //         }
 //         startCamera();
-
 //         const canvas_video = canvasRef_video.current;
-//         const context_video = canvas_video?.getContext("2d");
-
+//         const context_video = canvas_video.getContext("2d");
+        
 //         const canvas_sisterBird = canvasRef_sisterBird.current;
 //         const context_sisterBird = canvas_sisterBird?.getContext("2d");
-
+        
 //         const canvas_brotherBird = canvasRef_brotherBird.current;
 //         const context_brotherBird = canvas_brotherBird?.getContext("2d");
-
+        
 //         const canvas_girl = canvasRef_girl.current;
 //         const context_girl = canvas_girl?.getContext("2d");
-
+            
 //         const canvas_god = canvasRef_god.current;
 //         const context_god = canvas_god?.getContext("2d");
-
-//         const canvas_combine = canvasRef_combine.current;
-//         const context_combine = canvas_combine?.getContext("2d");
-
+            
+//         // const canvas_combine = canvasRef_combine.current;
+//         // const context_combine = canvas_combine?.getContext("2d");
+        
 //         if (!context_video) {
 //             throw new Error("context is not defined");
 //         }
-
+        
 //         const drawFrame = () => {
 //             if (videoRef.current) {
 //                 context_video.drawImage(videoRef.current, 0, 0, window.innerWidth, window.innerHeight);
 //             }
 //             requestAnimationFrame(drawFrame);
 //         };
-
+        
 //         drawFrame();
-
 //         const drawCanvasImage = (context: CanvasRenderingContext2D | null, imageSrc: string | null) => {
 //             if (context) {
 //                 const img = new Image();
@@ -116,7 +113,7 @@
 //                 img.onload = () => {
 //                     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 //                     if(context != null && context != undefined){
-//                         context.drawImage(img, 100, 100, window.innerWidth, window.innerHeight);
+//                         context.drawImage(img, window.innerWidth/4, window.innerHeight/4, window.innerWidth/2, window.innerHeight/2);
 //                     }
 //                 };
 //             }
@@ -127,7 +124,43 @@
 //         drawCanvasImage(context_girl ?? null, currentGirlImage);
 //         drawCanvasImage(context_god ?? null, currentGodImage);
 
-//     }, [currentSisterBirdImage, currentBrotherBirdImage, currentGirlImage, currentGodImage]);
+        
+//     },[currentSisterBirdImage,currentBrotherBirdImage,currentGirlImage,currentGodImage]);
+//     // const setCanvasImage = function(context:CanvasRenderingContext2D){
+//     //     const image = new Image();
+//     //     image.src = context.canvas.toDataURL();
+//     //     return image;
+        
+//     // };
+//     // const handleCapture = async (
+//     //     context_video:CanvasRenderingContext2D,
+//     //     context_sisterBird:CanvasRenderingContext2D,context_brotherBird:CanvasRenderingContext2D,
+//     //     context_girl: CanvasRenderingContext2D,context_god: CanvasRenderingContext2D,
+//     //     context_combine: CanvasRenderingContext2D) => {
+//     //     if(context_sisterBird != null && context_brotherBird != null && context_girl != null && context_god != null && context_combine != null){
+//     //         const canvasImages : HTMLImageElement[] =[
+//     //             await setCanvasImage(context_video),
+//     //             await setCanvasImage(context_sisterBird),
+//     //             await setCanvasImage(context_brotherBird),
+//     //             await setCanvasImage(context_girl),
+//     //             await setCanvasImage(context_god)
+//     //         ];
+//     //         await context_combine.drawImage(canvasImages[0],0,0,deviceSize.width,deviceSize.height);
+//     //         await context_combine.drawImage(canvasImages[1],0,0,deviceSize.width,deviceSize.height);
+//     //         await context_combine.drawImage(canvasImages[2],0,0,deviceSize.width,deviceSize.height);
+//     //         await context_combine.drawImage(canvasImages[3],0,0,deviceSize.width,deviceSize.height);
+//     //         await context_combine.drawImage(canvasImages[4],0,0,deviceSize.width,deviceSize.height);
+
+//     //         // 画像を保存する
+//     //         const image = new Image();
+//     //         image.src = context_combine.canvas.toDataURL();
+//     //         const a = document.createElement("a");
+//     //         a.href = image.src;
+//     //         a.download = "arPhoto.png";
+//     //     }
+//     // };
+
+
 
 //     const handleCapture = async (
 //         context_video: CanvasRenderingContext2D,
@@ -188,54 +221,6 @@
 //     const toggleEditingMenu = () => {
 //         setIsEditingMenuVisible(!isEditingMenuVisible);
 //     };
-
-//     const handleCanvasClick = (canvas: HTMLCanvasElement) => {
-//         setSelectedCanvas(canvas);
-//     };
-
-//     const handleCanvasReset = (canvas: HTMLCanvasElement) => {
-//         const context = canvas.getContext('2d');
-//         if (context) {
-//             context.clearRect(0, 0, canvas.width, canvas.height);
-//         }
-//         setSelectedCanvas(null);
-//     };
-
-//     const handleTouchStart = (event: React.TouchEvent<HTMLCanvasElement>) => {
-//         const canvas = event.currentTarget;
-//         const context = canvas.getContext('2d');
-//         if (context) {
-//             const rect = canvas.getBoundingClientRect();
-//             const x = event.touches[0].clientX - rect.left;
-//             const y = event.touches[0].clientY - rect.top;
-//             context.strokeStyle = 'white';
-//             context.lineWidth = 2;
-//             context.strokeRect(x - 50, y - 50, 100, 100);
-//             context.fillStyle = 'white';
-//             context.fillRect(x + 40, y - 60, 20, 20);
-//             context.fillStyle = 'black';
-//             context.fillText('✖️', x + 45, y - 45);
-//         }
-//     };
-
-//     const handleTouchMove = (event: React.TouchEvent<HTMLCanvasElement>) => {
-//         if (selectedCanvas) {
-//             const canvas = selectedCanvas;
-//             const context = canvas.getContext('2d');
-//             if (context) {
-//                 const rect = canvas.getBoundingClientRect();
-//                 const x = event.touches[0].clientX - rect.left;
-//                 const y = event.touches[0].clientY - rect.top;
-//                 context.clearRect(0, 0, canvas.width, canvas.height);
-//                 context.drawImage(new Image(), x - 50, y - 50, 100, 100);
-//             }
-//         }
-//     };
-
-//     const handleTouchEnd = () => {
-//         setSelectedCanvas(null);
-//     };
-
 //     return (
 //         <>
 //             <div className="allContainer relative">
@@ -243,10 +228,10 @@
 //                 {/* スマホの縦、横サイズのキャンバスを作成 */}
 //                 <div className="canvasContainer relative">
 //                     <canvas className="absolute top-0 left-0" ref={canvasRef_video} width={deviceSize.width} height={deviceSize.height} />
-//                     <canvas className="absolute top-0 left-0" ref={canvasRef_sisterBird} width={deviceSize.width} height={deviceSize.height} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} onClick={() => handleCanvasClick(canvasRef_sisterBird.current!)} />
-//                     <canvas className="absolute top-0 left-0" ref={canvasRef_brotherBird} width={deviceSize.width} height={deviceSize.height} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} onClick={() => handleCanvasClick(canvasRef_brotherBird.current!)} />
-//                     <canvas className="absolute top-0 left-0" ref={canvasRef_girl} width={deviceSize.width} height={deviceSize.height} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} onClick={() => handleCanvasClick(canvasRef_girl.current!)} />
-//                     <canvas className="absolute top-0 left-0" ref={canvasRef_god} width={deviceSize.width} height={deviceSize.height} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd} onClick={() => handleCanvasClick(canvasRef_god.current!)} />
+//                     <canvas className="absolute top-0 left-0" ref={canvasRef_sisterBird} width={deviceSize.width} height={deviceSize.height} />
+//                     <canvas className="absolute top-0 left-0" ref={canvasRef_brotherBird} width={deviceSize.width} height={deviceSize.height} />
+//                     <canvas className="absolute top-0 left-0" ref={canvasRef_girl} width={deviceSize.width} height={deviceSize.height} />
+//                     <canvas className="absolute top-0 left-0" ref={canvasRef_god} width={deviceSize.width} height={deviceSize.height} />
 //                     <canvas className="absolute top-0 left-0" ref={canvasRef_combine} width={deviceSize.width} height={deviceSize.height} />
 //                 </div>
 //                 <div className="editingMenu fixed bottom-10 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
