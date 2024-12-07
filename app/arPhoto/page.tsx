@@ -116,7 +116,7 @@ export default function ArPhoto() {
     };
     const handleCapture = async () => {
         if(context_sisterBird != null && context_brotherBird != null && context_girl != null && context_god != null && context_combine != null){
-            let canvasImages : HTMLImageElement[] =[
+            const canvasImages : HTMLImageElement[] =[
                 await setCanvasImage(context_sisterBird),
                 await setCanvasImage(context_brotherBird),
                 await setCanvasImage(context_girl),
