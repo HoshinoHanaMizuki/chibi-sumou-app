@@ -140,7 +140,9 @@ export default function ArPhoto() {
         return image;
         
     };
-    
+    const notShot = () => {
+        alert("撮影できませんでした");
+    }
 
     return (
         <>
@@ -161,7 +163,7 @@ export default function ArPhoto() {
 
                     </div>
                     キャラクター設定UI
-                    <button onClick={captureFunc} className="px-4 py-2 bg-blue-500 text-white rounded">
+                    <button onClick={notShot} className="px-4 py-2 bg-blue-500 text-white rounded">
                         撮影
                     </button>
                 </div>
