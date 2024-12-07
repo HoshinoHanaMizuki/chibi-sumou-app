@@ -107,39 +107,56 @@ export default function ArPhoto() {
         context_girl?.clearRect(0, 0, window.innerWidth, window.innerHeight);
         context_god?.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-        // const handleCapture = async () => {
-        //     if(context_sisterBird != null && context_brotherBird != null && context_girl != null && context_god != null && context_combine != null){
-        //         const canvasImages : HTMLImageElement[] =[
-        //             await setCanvasImage(context_sisterBird),
-        //             await setCanvasImage(context_brotherBird),
-        //             await setCanvasImage(context_girl),
-        //             await setCanvasImage(context_god)
-        //         ];
-        //         await context_combine.drawImage(canvasImages[0],0,0,deviceSize.width,deviceSize.height);
-        //         await context_combine.drawImage(canvasImages[1],0,0,deviceSize.width,deviceSize.height);
-        //         await context_combine.drawImage(canvasImages[2],0,0,deviceSize.width,deviceSize.height);
-        //         await context_combine.drawImage(canvasImages[3],0,0,deviceSize.width,deviceSize.height);
-    
-        //         // 画像を保存する
-        //         const image = new Image();
-        //         image.src = context_combine.canvas.toDataURL();
-        //         const a = document.createElement("a");
-        //         a.href = image.src;
-        //         a.download = "arPhoto.png";
-        //     }
-        //     else{
-        //         alert("撮れてない");
-        //     }
-        // };
-        // setCaptureFunc(handleCapture);
-
-    },[]);
-    // const setCanvasImage = function(context:CanvasRenderingContext2D){
-    //     const image = new Image();
-    //     image.src = context.canvas.toDataURL();
-    //     return image;
         
-    // };
+    },[]);
+    const setCanvasImage = function(context:CanvasRenderingContext2D){
+        const image = new Image();
+        image.src = context.canvas.toDataURL();
+        return image;
+        
+    };
+    const handleCapture = async (
+        context_video:CanvasRenderingContext2D,
+        context_sisterBird:CanvasRenderingContext2D,context_brotherBird:CanvasRenderingContext2D,
+        context_girl: CanvasRenderingContext2D,context_god: CanvasRenderingContext2D,
+        context_combine: CanvasRenderingContext2D) => {
+        if(context_sisterBird != null && context_brotherBird != null && context_girl != null && context_god != null && context_combine != null){
+            const canvasImages : HTMLImageElement[] =[
+                await setCanvasImage(context_video),
+                await setCanvasImage(context_sisterBird),
+                await setCanvasImage(context_brotherBird),
+                await setCanvasImage(context_girl),
+                await setCanvasImage(context_god)
+            ];
+            await context_combine.drawImage(canvasImages[0],0,0,deviceSize.width,deviceSize.height);
+            await context_combine.drawImage(canvasImages[1],0,0,deviceSize.width,deviceSize.height);
+            await context_combine.drawImage(canvasImages[2],0,0,deviceSize.width,deviceSize.height);
+            await context_combine.drawImage(canvasImages[3],0,0,deviceSize.width,deviceSize.height);
+            await context_combine.drawImage(canvasImages[4],0,0,deviceSize.width,deviceSize.height);
+
+            // 画像を保存する
+            const image = new Image();
+            image.src = context_combine.canvas.toDataURL();
+            const a = document.createElement("a");
+            a.href = image.src;
+            a.download = "arPhoto.png";
+        }
+    };
+
+    const shot = () => {
+        const context_video = canvasRef_video.current?.getContext("2d");
+        const context_sisterBird = canvasRef_sisterBird.current?.getContext("2d");
+        const context_brotherBird = canvasRef_brotherBird.current?.getContext("2d");
+        const context_girl = canvasRef_girl.current?.getContext("2d");
+        const context_god = canvasRef_god.current?.getContext("2d");
+        const context_combine = canvasRef_combine.current?.getContext("2d");
+
+        if (context_video && context_sisterBird && context_brotherBird && context_girl && context_god && context_combine) {
+            handleCapture(context_video, context_sisterBird, context_brotherBird, context_girl, context_god, context_combine);
+        } else {
+            alert("撮影できませんでした");
+        }
+    }
     const notShot = () => {
         alert("撮影できませんでした");
     }
@@ -163,7 +180,7 @@ export default function ArPhoto() {
 
                     </div>
                     キャラクター設定UI
-                    <button onClick={notShot} className="px-4 py-2 bg-blue-500 text-white rounded">
+                    <button onClick={shot} className="px-4 py-2 bg-blue-500 text-white rounded">
                         撮影
                     </button>
                 </div>
