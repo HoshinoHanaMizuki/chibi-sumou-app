@@ -3,7 +3,12 @@
 import NavBar from "../features/common/Navbar/Navbar";
 import { useRef, useEffect,useState} from "react";
 export default function ArPhoto() {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
+    const canvasRef_video = useRef<HTMLCanvasElement>(null);
+    const canvasRef_sisterBird = useRef<HTMLCanvasElement>(null);
+    const canvasRef_brotherBird = useRef<HTMLCanvasElement>(null);
+    const canvasRef_girl = useRef<HTMLCanvasElement>(null);
+    const canvasRef_god = useRef<HTMLCanvasElement>(null);
+    const canvasRef_combine = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     // const [currentGirlImage,setCurrentGirlImage] = useState<string | null>(null);
     // const [currentBroImage,setCurrentBroImage] = useState<string | null>(null);
@@ -45,8 +50,8 @@ export default function ArPhoto() {
         if(!videoRef.current) {
             throw new Error("videoRef is not defined");
         }
-        if(!canvasRef.current) {
-            throw new Error("canvasRef is not defined");
+        if(!canvasRef_video.current) {
+            throw new Error("canvasRef_video is not defined");
         }
         // スマホのカメラを起動する関数
         const startCamera = async () => {
@@ -64,15 +69,36 @@ export default function ArPhoto() {
             }
         }
         startCamera();
-        const canvas = canvasRef.current;
-        const context = canvas.getContext("2d");
-        if (!context) {
+        const canvas_video = canvasRef_video.current;
+        const context_video = canvas_video.getContext("2d");
+
+        const canvas_sisterBird = canvasRef_sisterBird.current;
+        const context_sisterBird = canvas_sisterBird?.getContext("2d");
+        context_sisterBird?.clearRect(0, 0, deviceSize.width, deviceSize.height);
+
+        const canvas_brotherBird = canvasRef_brotherBird.current;
+        const context_brotherBird = canvas_brotherBird?.getContext("2d");
+        context_brotherBird?.clearRect(0, 0, deviceSize.width, deviceSize.height);
+        
+        const canvas_girl = canvasRef_girl.current;
+        const context_girl = canvas_girl?.getContext("2d");
+        context_girl?.clearRect(0, 0, deviceSize.width, deviceSize.height);
+
+        const canvas_god = canvasRef_god.current;
+        const context_god = canvas_god?.getContext("2d");
+        context_god?.clearRect(0, 0, deviceSize.width, deviceSize.height);
+        
+        const canvas_combine = canvasRef_combine.current;
+        const context_combine = canvas_combine?.getContext("2d");
+        context_combine?.clearRect(0, 0, deviceSize.width, deviceSize.height);
+
+        if (!context_video) {
             throw new Error("context is not defined");
         }
 
         const drawFrame = () => {
             if (videoRef.current) {
-                context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+                context_video.drawImage(videoRef.current, 0, 0, canvas_video.width, canvas_video.height);
             }
             requestAnimationFrame(drawFrame);
         };
@@ -81,19 +107,19 @@ export default function ArPhoto() {
 
     },[]);
     const handleCapture = () => {
-        if (canvasRef.current && videoRef.current) {
-            const canvas = canvasRef.current;
-            const context = canvas.getContext("2d");
-            if (context) {
-                // カメラ映像をキャンバスに描画
-                context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+        if (canvasRef_video.current && videoRef.current) {
+            // const canvas = canvasRef.current;
+            // const context = canvas.getContext("2d");
+            // if (context) {
+            //     // カメラ映像をキャンバスに描画
+            //     context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
 
-                // 最後にキャンバスを画像として保存
-                const dataUrl = canvas.toDataURL("image/png");
-                alert(`撮影された画像のデータURL: ${dataUrl}`);
-                // 画像を端末にダウンロード
+            //     // 最後にキャンバスを画像として保存
+            //     const dataUrl = canvas.toDataURL("image/png");
+            //     alert(`撮影された画像のデータURL: ${dataUrl}`);
+            //     // 画像を端末にダウンロード
 
-            }
+            // }
         }
     };
     return (
@@ -101,7 +127,14 @@ export default function ArPhoto() {
             <div className="allContainer relative">
                 <NavBar />
                 {/* スマホの縦、横サイズのキャンバスを作成 */}
-                <canvas ref={canvasRef} width={deviceSize.width} height={deviceSize.height} />
+                <div className="canvasContainer relative">
+                    <canvas className="absolute top-0 left-0" ref={canvasRef_video} width={deviceSize.width} height={deviceSize.height} />
+                    <canvas className="absolute top-0 left-0" ref={canvasRef_sisterBird} width={deviceSize.width} height={deviceSize.height} />
+                    <canvas className="absolute top-0 left-0" ref={canvasRef_brotherBird} width={deviceSize.width} height={deviceSize.height} />
+                    <canvas className="absolute top-0 left-0" ref={canvasRef_girl} width={deviceSize.width} height={deviceSize.height} />
+                    <canvas className="absolute top-0 left-0" ref={canvasRef_god} width={deviceSize.width} height={deviceSize.height} />
+                    <canvas className="absolute top-0 left-0" ref={canvasRef_combine} width={deviceSize.width} height={deviceSize.height} />
+                </div>
                 <div className="editingMenu fixed bottom-0 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
                     {/* キャラクター設定UIをここに追加 */}
                     <div className="charactorSettingUI flex">
