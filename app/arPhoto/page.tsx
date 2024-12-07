@@ -235,7 +235,7 @@ export default function ArPhoto() {
                     <canvas className="absolute top-0 left-0" ref={canvasRef_combine} width={deviceSize.width} height={deviceSize.height} />
                 </div>
                 <div className="editingMenu fixed bottom-0 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
-                    <div className="fixed bottom-4 right-4 flex space-x-2">
+                    <div className="fixed bottom-10 right-4 flex space-x-2">
                         <button onClick={toggleEditingMenu} className="bg-gray-200 p-2 rounded">
                             {isEditingMenuVisible ? '✖️' : '🚪'}
                         </button>
