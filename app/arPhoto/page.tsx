@@ -1,7 +1,7 @@
 "use client";
 // import Image from "next/image";
 import NavBar from "../features/common/Navbar/Navbar";
-import { useRef, useEffect,useState} from "react";
+import { useRef, useEffect} from "react";
 export default function ArPhoto() {
     const canvasRef_video = useRef<HTMLCanvasElement>(null);
     const canvasRef_sisterBird = useRef<HTMLCanvasElement>(null);
@@ -149,12 +149,12 @@ export default function ArPhoto() {
                 <NavBar />
                 {/* スマホの縦、横サイズのキャンバスを作成 */}
                 <div className="canvasContainer relative">
-                    <canvas className="absolute top-0 left-0" ref={canvasRef_video} width={deviceSize.width} height={deviceSize.height} />
-                    <canvas className="absolute top-0 left-0" ref={canvasRef_sisterBird} width={deviceSize.width} height={deviceSize.height} />
-                    <canvas className="absolute top-0 left-0" ref={canvasRef_brotherBird} width={deviceSize.width} height={deviceSize.height} />
-                    <canvas className="absolute top-0 left-0" ref={canvasRef_girl} width={deviceSize.width} height={deviceSize.height} />
-                    <canvas className="absolute top-0 left-0" ref={canvasRef_god} width={deviceSize.width} height={deviceSize.height} />
-                    <canvas className="absolute top-0 left-0" ref={canvasRef_combine} width={deviceSize.width} height={deviceSize.height} />
+                    <canvas className="absolute top-0 left-0" ref={canvasRef_video} width={window.innerWidth} height={window.innerHeight} />
+                    <canvas className="absolute top-0 left-0" ref={canvasRef_sisterBird} width={window.innerWidth} height={window.innerHeight} />
+                    <canvas className="absolute top-0 left-0" ref={canvasRef_brotherBird} width={window.innerWidth} height={window.innerHeight} />
+                    <canvas className="absolute top-0 left-0" ref={canvasRef_girl} width={window.innerWidth} height={window.innerHeight} />
+                    <canvas className="absolute top-0 left-0" ref={canvasRef_god} width={window.innerWidth} height={window.innerHeight} />
+                    <canvas className="absolute top-0 left-0" ref={canvasRef_combine} width={window.innerWidth} height={window.innerHeight} />
                 </div>
                 <div className="editingMenu fixed bottom-0 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
                     {/* キャラクター設定UIをここに追加 */}
