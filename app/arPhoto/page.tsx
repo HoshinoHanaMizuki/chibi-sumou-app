@@ -220,6 +220,8 @@ export default function ArPhoto() {
                                 onClick={() => setCurrentBrotherBirdImage(image)}
                             />
                         ))}
+                    </div>
+                    <div className="charactorSettingUI w-screen bottom-32 flex justify-center space-x-4 overflow-x-scroll">
                         {girlImageList.map((image, index) => (
                             <img
                                 key={index}
