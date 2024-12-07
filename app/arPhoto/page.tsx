@@ -51,6 +51,13 @@ export default function ArPhoto() {
     
     useEffect(()=>{
         setDeviceSize({width:window.innerWidth,height:window.innerHeight});
+        // ブラウザチェック
+        const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+        const isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+
+        if (!isChrome && !isSafari) {
+            alert("このページはGoogle ChromeまたはSafariで開いてください。");
+        }
         if(!videoRef.current) {
             throw new Error("videoRef is not defined");
         }
