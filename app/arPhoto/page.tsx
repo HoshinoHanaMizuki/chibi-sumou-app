@@ -16,6 +16,8 @@ export default function ArPhoto() {
     const [currentSisterBirdImage,setCurrentSisterBirdImage] = useState<string | null>(null);
     const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
 
+    const [isEditingMenuVisible, setIsEditingMenuVisible] = useState(true);
+    const [buttonText, setButtonText] = useState("❌");
     const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
     // const [isEditingMenuVisible, setIsEditingMenuVisible] = useState(true);
     // キャラクター画像のリスト
@@ -182,6 +184,11 @@ export default function ArPhoto() {
         }
     }
 
+    const visibleEditing = () => {
+        const buttonText = isEditingMenuVisible ? "❌" : "🚪";
+        setIsEditingMenuVisible(!isEditingMenuVisible);
+    }
+
     return (
         <>
             <div className="allContainer relative">
@@ -195,55 +202,67 @@ export default function ArPhoto() {
                     <canvas className="absolute top-0 left-0" ref={canvasRef_god} width={deviceSize.width} height={deviceSize.height} />
                     <canvas className="absolute top-0 left-0" ref={canvasRef_combine} width={deviceSize.width} height={deviceSize.height} />
                 </div>
+                {isEditingMenuVisible && (
+                    <div className="charactorSettingUI w-screen h-screen fixed grid grid-cols-1 space-x-4">
+                        <button onClick={() => visibleEditing} className="fixed top-0 right-0 px-4 py-2">{buttonText}</button>
+                        <h2 className="text-2xl text-center">最大４体選択できるよ！好きな表情を選ぼう！</h2>
+                        <div className="sisterBirdSettingUI grid grid-cols-4">
+                            {sisterBirdImageList.map((image, index) => (
+                                <img
+                                    key={index}
+                                    src={image}
+                                    alt={`Sister Bird ${index + 1}`}
+                                    width={100}
+                                    height={60}
+                                    className="h-auto"
+                                    onClick={() => setCurrentSisterBirdImage(image)}
+                                />
+                            ))}
+                        </div>
+                        <div className="brotherBirdSettingUI grid grid-cols-3">
+                            {brotherBirdImageList.map((image, index) => (
+                                <img
+                                    key={index}
+                                    src={image}
+                                    alt={`Brother Bird ${index + 1}`}
+                                    width={100}
+                                    height={60}
+                                    className="h-auto"
+                                    onClick={() => setCurrentBrotherBirdImage(image)}
+                                />
+                            ))}
+                        </div>
+                        <div className="girlSettingUI grid grid-cols-5">
+                            {girlImageList.map((image, index) => (
+                                <img
+                                    key={index}
+                                    src={image}
+                                    alt={`Girl ${index + 1}`}
+                                    width={100}
+                                    height={60}
+                                    className="h-auto"
+                                    onClick={() => setCurrentGirlImage(image)}
+                                />
+                            ))}
+                        </div>
+                            
+                        <div className="battleGodSettingUI grid grid-cols-4">
+                            {battleGodImageList.map((image, index) => (
+                                <img
+                                    key={index}
+                                    src={image}
+                                    alt={`Battle God ${index + 1}`}
+                                    width={100}
+                                    height={60}
+                                    className="h-auto"
+                                    onClick={() => setCurrentGodImage(image)}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                )}
                 <div className="editingMenu fixed bottom-10 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
                     {/*キャラクター設定UIをここに追加 */}
-                    <div className="charactorSettingUI w-screen bottom-32 flex justify-center space-x-4 overflow-x-scroll">
-                        {sisterBirdImageList.map((image, index) => (
-                            <img
-                                key={index}
-                                src={image}
-                                alt={`Sister Bird ${index + 1}`}
-                                width={100}
-                                height={60}
-                                className="h-auto"
-                                onClick={() => setCurrentSisterBirdImage(image)}
-                            />
-                        ))}
-                        {brotherBirdImageList.map((image, index) => (
-                            <img
-                                key={index}
-                                src={image}
-                                alt={`Brother Bird ${index + 1}`}
-                                width={100}
-                                height={60}
-                                className="h-auto"
-                                onClick={() => setCurrentBrotherBirdImage(image)}
-                            />
-                        ))}
-                        {girlImageList.map((image, index) => (
-                            <img
-                                key={index}
-                                src={image}
-                                alt={`Girl ${index + 1}`}
-                                width={100}
-                                height={60}
-                                className="h-auto"
-                                onClick={() => setCurrentGirlImage(image)}
-                            />
-                        ))}
-                        {battleGodImageList.map((image, index) => (
-                            <img
-                                key={index}
-                                src={image}
-                                alt={`Battle God ${index + 1}`}
-                                width={100}
-                                height={60}
-                                className="h-auto"
-                                onClick={() => setCurrentGodImage(image)}
-                            />
-                        ))}
-                    </div>
-                      
                     <button onClick={shot} className="fixed bottom-0 left-0 right-0 px-4 py-2 bg-blue-500 text-white rounded">📷撮影</button>
                 </div>
                 <video ref={videoRef} autoPlay={true} playsInline={true} muted={true} />
