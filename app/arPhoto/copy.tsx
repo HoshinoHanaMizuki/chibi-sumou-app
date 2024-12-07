@@ -1,4 +1,4 @@
-// "use client";
+// // "use client";
 // // import Image from "next/image";
 // import NavBar from "../features/common/Navbar/Navbar";
 // import { useRef, useEffect,useState} from "react";
@@ -10,40 +10,40 @@
 //     const canvasRef_god = useRef<HTMLCanvasElement>(null);
 //     const canvasRef_combine = useRef<HTMLCanvasElement>(null);
 //     const videoRef = useRef<HTMLVideoElement>(null);
-//     const [currentGirlImage,setCurrentGirlImage] = useState<string | null>(null);
-//     const [currentBroImage,setCurrentBroImage] = useState<string | null>(null);
-//     const [currentSisImage,setCurrentSisImage] = useState<string | null>(null);
-//     const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
+//     // const [currentGirlImage,setCurrentGirlImage] = useState<string | null>(null);
+//     // const [currentBroImage,setCurrentBroImage] = useState<string | null>(null);
+//     // const [currentSisImage,setCurrentSisImage] = useState<string | null>(null);
+//     // const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
 //     const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
 //     // キャラクター画像のリスト
-//     const girlImageList : string[] = [
-//         "/images/charactors/girl/normal.png",
-//         "/images/charactors/girl/normalWithOp.png",
-//         "/images/charactors/girl/puku.png",
-//         "/images/charactors/girl/winkWithOp.png",
-//         "/images/charactors/girl/winkWithCl.png"
-//     ];
-//     const brotherBirdImageList : string[] = [
-//         "/images/charactors/brotherBird/normal.png",
-//         "/images/charactors/brotherBird/cool.png",
-//         "/images/charactors/brotherBird/shiny.png"
-//     ];
-//     const sisterBirdImageList : string[] = [
-//         "/images/charactors/sisterBird/open.png",
-//         "/images/charactors/sisterBird/close.png",
-//         "/images/charactors/sisterBird/shock.png",
-//         "/images/charactors/sisterBird/smile.png"
-//     ];
-//     const battleGodImageList : string[] = [
-//         "/images/charactors/battleGod/normal.PNG",
-//         "/images/charactors/battleGod/normalOura.PNG",
-//         "/images/charactors/battleGod/normalFull.PNG",
-//         "/images/charactors/battleGod/normalRock.PNG",
-//         "/images/charactors/battleGod/smile.PNG",
-//         "/images/charactors/battleGod/smileOura.PNG",
-//         "/images/charactors/battleGod/smileFull.PNG",
-//         "/images/charactors/battleGod/smileRock.PNG",
-//     ];
+//     // const girlImageList : string[] = [
+//     //     "/images/charactors/girl/normal.png",
+//     //     "/images/charactors/girl/normalWithOp.png",
+//     //     "/images/charactors/girl/puku.png",
+//     //     "/images/charactors/girl/winkWithOp.png",
+//     //     "/images/charactors/girl/winkWithCl.png"
+//     // ];
+//     // const brotherBirdImageList : string[] = [
+//     //     "/images/charactors/brotherBird/normal.png",
+//     //     "/images/charactors/brotherBird/cool.png",
+//     //     "/images/charactors/brotherBird/shiny.png"
+//     // ];
+//     // const sisterBirdImageList : string[] = [
+//     //     "/images/charactors/sisterBird/open.png",
+//     //     "/images/charactors/sisterBird/close.png",
+//     //     "/images/charactors/sisterBird/shock.png",
+//     //     "/images/charactors/sisterBird/smile.png"
+//     // ];
+//     // const battleGodImageList : string[] = [
+//     //     "/images/charactors/battleGod/normal.PNG",
+//     //     "/images/charactors/battleGod/normalOura.PNG",
+//     //     "/images/charactors/battleGod/normalFull.PNG",
+//     //     "/images/charactors/battleGod/normalRock.PNG",
+//     //     "/images/charactors/battleGod/smile.PNG",
+//     //     "/images/charactors/battleGod/smileOura.PNG",
+//     //     "/images/charactors/battleGod/smileFull.PNG",
+//     //     "/images/charactors/battleGod/smileRock.PNG",
+//     // ];
 
 //     const canvas_video = canvasRef_video.current;
 //     const context_video = canvas_video?.getContext("2d");
@@ -88,11 +88,11 @@
 //         }
 //         startCamera();
         
-//         context_sisterBird?.clearRect(0, 0, deviceSize.width, deviceSize.height);
-//         context_brotherBird?.clearRect(0, 0, deviceSize.width, deviceSize.height);
-//         context_combine?.clearRect(0, 0, deviceSize.width, deviceSize.height);
-//         context_girl?.clearRect(0, 0, deviceSize.width, deviceSize.height);
-//         context_god?.clearRect(0, 0, deviceSize.width, deviceSize.height);
+//         context_sisterBird?.clearRect(0, 0, window.innerWidth, window.innerHeight)
+//         context_brotherBird?.clearRect(0, 0, window.innerWidth, window.innerHeight);
+//         context_combine?.clearRect(0, 0, window.innerWidth, window.innerHeight)
+//         context_girl?.clearRect(0, 0, window.innerWidth, window.innerHeight)
+//         context_god?.clearRect(0, 0, window.innerWidth, window.innerHeight)
         
 //         if (!context_video) {
 //             throw new Error("context is not defined");
@@ -100,7 +100,7 @@
         
 //         const drawFrame = () => {
 //             if (videoRef.current) {
-//                 context_video.drawImage(videoRef.current, 0, 0, deviceSize.width, deviceSize.height);
+//                 context_video.drawImage(videoRef.current, 0, 0, window.innerWidth, window.innerHeight);
 //             }
 //             requestAnimationFrame(drawFrame);
 //         };
@@ -109,14 +109,14 @@
 
 //     },[]);
 //     const setCanvasImage = function(context:CanvasRenderingContext2D){
-//         let image = new Image();
+//         const image = new Image();
 //         image.src = context.canvas.toDataURL();
 //         return image;
         
-//     }
+//     };
 //     const handleCapture = async () => {
-//         if(context_sisterBird != null && context_brotherBird != null && context_girl != null && context_god != null && context_combine != null) {
-//             let canvasImages : HTMLImageElement[] =[
+//         if(context_sisterBird != null && context_brotherBird != null && context_girl != null && context_god != null && context_combine != null){
+//             const canvasImages : HTMLImageElement[] =[
 //                 await setCanvasImage(context_sisterBird),
 //                 await setCanvasImage(context_brotherBird),
 //                 await setCanvasImage(context_girl),
@@ -126,8 +126,16 @@
 //             await context_combine.drawImage(canvasImages[1],0,0,deviceSize.width,deviceSize.height);
 //             await context_combine.drawImage(canvasImages[2],0,0,deviceSize.width,deviceSize.height);
 //             await context_combine.drawImage(canvasImages[3],0,0,deviceSize.width,deviceSize.height);
+
+//             // 画像を保存する
+//             const image = new Image();
+//             image.src = context_combine.canvas.toDataURL();
+//             const a = document.createElement("a");
+//             a.href = image.src;
+//             a.download = "arPhoto.png";
 //         }
 //     };
+
 //     return (
 //         <>
 //             <div className="allContainer relative">
@@ -155,4 +163,4 @@
 //             </div>
 //         </>
 //     );
-// }
+// // }
