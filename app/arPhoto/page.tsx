@@ -17,12 +17,6 @@ export default function ArPhoto() {
     const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
 
     const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
-    const [positions, ] = useState({
-        sisterBird: { x: 0, y: 0 },
-        brotherBird: { x: 0.45 * window.innerWidth, y: 0 },
-        girl: { x: 0, y: 0.45 * window.innerHeight },
-        god: { x: 0.45 * window.innerWidth, y: 0.45 * window.innerHeight },
-    });
     const [isEditingMenuVisible, setIsEditingMenuVisible] = useState(true);
     // キャラクター画像のリスト
     const sisterBirdImageList : string[] = [
@@ -109,7 +103,7 @@ export default function ArPhoto() {
         };
         
         drawFrame();
-        const drawCanvasImage = (context: CanvasRenderingContext2D | null, imageSrc: string | null, position: { x: number, y: number }) => {
+        const drawCanvasImage = (context: CanvasRenderingContext2D | null, imageSrc: string | null, positionX:number,positionY:number) => {
             if (context) {
                 const img = new Image();
                 if (imageSrc != null) {
@@ -118,19 +112,19 @@ export default function ArPhoto() {
                 img.onload = () => {
                     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
                     if (context != null && context != undefined) {
-                        context.drawImage(img, position.x, position.y, window.innerWidth * 0.7, window.innerHeight * 0.7);
+                        context.drawImage(img, positionX, positionY, window.innerWidth * 0.7, window.innerHeight * 0.7);
                     }
                 };
             }
         };
 
-        drawCanvasImage(context_sisterBird ?? null, currentSisterBirdImage,positions.sisterBird);
-        drawCanvasImage(context_brotherBird ?? null, currentBrotherBirdImage,positions.brotherBird);
-        drawCanvasImage(context_girl ?? null, currentGirlImage,positions.girl);
-        drawCanvasImage(context_god ?? null, currentGodImage,positions.god);
+        drawCanvasImage(context_sisterBird ?? null, currentSisterBirdImage,0,0);
+        drawCanvasImage(context_brotherBird ?? null, currentBrotherBirdImage,0.3*window.innerWidth,0);
+        drawCanvasImage(context_girl ?? null, currentGirlImage,0,0.3*window.innerHeight);
+        drawCanvasImage(context_god ?? null, currentGodImage,0.3*window.innerWidth,0.3*window.innerHeight);
 
         
-    },[currentSisterBirdImage,currentBrotherBirdImage,currentGirlImage,currentGodImage,positions]);
+    },[currentSisterBirdImage,currentBrotherBirdImage,currentGirlImage,currentGodImage]);
 
     const handleCapture = async (
         context_video: CanvasRenderingContext2D,
