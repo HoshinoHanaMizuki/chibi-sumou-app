@@ -11,10 +11,10 @@ export default function ArPhoto() {
     const canvasRef_combine = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
 
-    const [currentGirlImage,] = useState<string | null>(null);
+    const [currentGirlImage,setCurrentGirlImage] = useState<string | null>(null);
     const [currentBrotherBirdImage,setCurrentBrotherBirdImage] = useState<string | null>(null);
     const [currentSisterBirdImage,setCurrentSisterBirdImage] = useState<string | null>(null);
-    const [currentGodImage,] = useState<string | null>(null);
+    const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
 
     const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
 
@@ -31,23 +31,23 @@ export default function ArPhoto() {
         "/images/charactors/brotherBird/cool.png",
         "/images/charactors/brotherBird/shiny.png"
     ];
-    // const girlImageList : string[] = [
-    //     "/images/charactors/girl/normal.png",
-    //     "/images/charactors/girl/normalWithOp.png",
-    //     "/images/charactors/girl/puku.png",
-    //     "/images/charactors/girl/winkWithOp.png",
-    //     "/images/charactors/girl/winkWithCl.png"
-    // ];
-    // const battleGodImageList : string[] = [
-    //     "/images/charactors/battleGod/normal.PNG",
-    //     "/images/charactors/battleGod/normalOura.PNG",
-    //     "/images/charactors/battleGod/normalFull.PNG",
-    //     "/images/charactors/battleGod/normalRock.PNG",
-    //     "/images/charactors/battleGod/smile.PNG",
-    //     "/images/charactors/battleGod/smileOura.PNG",
-    //     "/images/charactors/battleGod/smileFull.PNG",
-    //     "/images/charactors/battleGod/smileRock.PNG",
-    // ];
+    const girlImageList : string[] = [
+        "/images/charactors/girl/normal.png",
+        "/images/charactors/girl/normalWithOp.png",
+        "/images/charactors/girl/puku.png",
+        "/images/charactors/girl/winkWithOp.png",
+        "/images/charactors/girl/winkWithCl.png"
+    ];
+    const battleGodImageList : string[] = [
+        "/images/charactors/battleGod/normal.PNG",
+        "/images/charactors/battleGod/normalOura.PNG",
+        "/images/charactors/battleGod/normalFull.PNG",
+        "/images/charactors/battleGod/normalRock.PNG",
+        "/images/charactors/battleGod/smile.PNG",
+        "/images/charactors/battleGod/smileOura.PNG",
+        "/images/charactors/battleGod/smileFull.PNG",
+        "/images/charactors/battleGod/smileRock.PNG",
+    ];
     
     
     useEffect(()=>{
@@ -262,6 +262,28 @@ export default function ArPhoto() {
                                 height={deviceSize.height / 6}
                                 className="h-auto cursor-pointer"
                                 onClick={() => setCurrentBrotherBirdImage(image)}
+                            />
+                        ))}
+                        {girlImageList.map((image, index) => (
+                            <img
+                                key={index}
+                                src={image}
+                                alt={`Girl ${index + 1}`}
+                                width={deviceSize.width / 6}
+                                height={deviceSize.height / 6}
+                                className="h-auto cursor-pointer"
+                                onClick={() => setCurrentGirlImage(image)}
+                            />
+                        ))}
+                        {battleGodImageList.map((image, index) => (
+                            <img
+                                key={index}
+                                src={image}
+                                alt={`Battle God ${index + 1}`}
+                                width={deviceSize.width / 6}
+                                height={deviceSize.height / 6}
+                                className="h-auto cursor-pointer"
+                                onClick={() => setCurrentGodImage(image)}
                             />
                         ))}
                     </div>
