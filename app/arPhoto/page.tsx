@@ -98,7 +98,7 @@ export default function ArPhoto() {
         
         const drawFrame = () => {
             if (videoRef.current) {
-                context_video.drawImage(videoRef.current, 0, 0, window.innerWidth, window.innerHeight);
+                context_video.drawImage(videoRef.current, 0, 0, 0.7*window.innerWidth, 0.7*window.innerHeight);
             }
             requestAnimationFrame(drawFrame);
         };
