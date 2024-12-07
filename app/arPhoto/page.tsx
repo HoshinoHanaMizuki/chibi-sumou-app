@@ -153,6 +153,7 @@ export default function ArPhoto() {
 
         if (context_video && context_sisterBird && context_brotherBird && context_girl && context_god && context_combine) {
             handleCapture(context_video, context_sisterBird, context_brotherBird, context_girl, context_god, context_combine);
+            alert("撮影しました");
         } else {
             alert("撮影できませんでした");
         }
