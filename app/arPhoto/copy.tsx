@@ -1,4 +1,4 @@
-// // "use client";
+// "use client";
 // // import Image from "next/image";
 // import NavBar from "../features/common/Navbar/Navbar";
 // import { useRef, useEffect,useState} from "react";
@@ -44,24 +44,7 @@
 //     //     "/images/charactors/battleGod/smileFull.PNG",
 //     //     "/images/charactors/battleGod/smileRock.PNG",
 //     // ];
-
-//     const canvas_video = canvasRef_video.current;
-//     const context_video = canvas_video?.getContext("2d");
-
-//     const canvas_sisterBird = canvasRef_sisterBird.current;
-//     const context_sisterBird = canvas_sisterBird?.getContext("2d");
-
-//     const canvas_brotherBird = canvasRef_brotherBird.current;
-//     const context_brotherBird = canvas_brotherBird?.getContext("2d");
-
-//     const canvas_girl = canvasRef_girl.current;
-//     const context_girl = canvas_girl?.getContext("2d");
     
-//     const canvas_god = canvasRef_god.current;
-//     const context_god = canvas_god?.getContext("2d");
-    
-//     const canvas_combine = canvasRef_combine.current;
-//     const context_combine = canvas_combine?.getContext("2d");
     
 //     useEffect(()=>{
 //         setDeviceSize({width:window.innerWidth,height:window.innerHeight});
@@ -87,12 +70,23 @@
 //             }
 //         }
 //         startCamera();
+//         const canvas_video = canvasRef_video.current;
+//         const context_video = canvas_video.getContext("2d");
         
-//         context_sisterBird?.clearRect(0, 0, window.innerWidth, window.innerHeight)
-//         context_brotherBird?.clearRect(0, 0, window.innerWidth, window.innerHeight);
-//         context_combine?.clearRect(0, 0, window.innerWidth, window.innerHeight)
-//         context_girl?.clearRect(0, 0, window.innerWidth, window.innerHeight)
-//         context_god?.clearRect(0, 0, window.innerWidth, window.innerHeight)
+//         const canvas_sisterBird = canvasRef_sisterBird.current;
+//         const context_sisterBird = canvas_sisterBird?.getContext("2d");
+        
+//         const canvas_brotherBird = canvasRef_brotherBird.current;
+//         const context_brotherBird = canvas_brotherBird?.getContext("2d");
+        
+//         const canvas_girl = canvasRef_girl.current;
+//         const context_girl = canvas_girl?.getContext("2d");
+            
+//         const canvas_god = canvasRef_god.current;
+//         const context_god = canvas_god?.getContext("2d");
+            
+//         const canvas_combine = canvasRef_combine.current;
+//         const context_combine = canvas_combine?.getContext("2d");
         
 //         if (!context_video) {
 //             throw new Error("context is not defined");
@@ -104,36 +98,41 @@
 //             }
 //             requestAnimationFrame(drawFrame);
 //         };
-
+        
 //         drawFrame();
+//         context_sisterBird?.clearRect(0, 0, window.innerWidth, window.innerHeight);
+//         context_brotherBird?.clearRect(0, 0, window.innerWidth, window.innerHeight);
+//         context_combine?.clearRect(0, 0, window.innerWidth, window.innerHeight);
+//         context_girl?.clearRect(0, 0, window.innerWidth, window.innerHeight);
+//         context_god?.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
 //     },[]);
-//     const setCanvasImage = function(context:CanvasRenderingContext2D){
-//         const image = new Image();
-//         image.src = context.canvas.toDataURL();
-//         return image;
+//     // const setCanvasImage = function(context:CanvasRenderingContext2D){
+//     //     const image = new Image();
+//     //     image.src = context.canvas.toDataURL();
+//     //     return image;
         
-//     };
-//     const handleCapture = async () => {
-//         if(context_sisterBird != null && context_brotherBird != null && context_girl != null && context_god != null && context_combine != null){
-//             const canvasImages : HTMLImageElement[] =[
-//                 await setCanvasImage(context_sisterBird),
-//                 await setCanvasImage(context_brotherBird),
-//                 await setCanvasImage(context_girl),
-//                 await setCanvasImage(context_god)
-//             ];
-//             await context_combine.drawImage(canvasImages[0],0,0,deviceSize.width,deviceSize.height);
-//             await context_combine.drawImage(canvasImages[1],0,0,deviceSize.width,deviceSize.height);
-//             await context_combine.drawImage(canvasImages[2],0,0,deviceSize.width,deviceSize.height);
-//             await context_combine.drawImage(canvasImages[3],0,0,deviceSize.width,deviceSize.height);
+//     // };
+//     const handleCapture = () => {
+//         // if(context_sisterBird != null && context_brotherBird != null && context_girl != null && context_god != null && context_combine != null){
+//         //     const canvasImages : HTMLImageElement[] =[
+//         //         await setCanvasImage(context_sisterBird),
+//         //         await setCanvasImage(context_brotherBird),
+//         //         await setCanvasImage(context_girl),
+//         //         await setCanvasImage(context_god)
+//         //     ];
+//         //     await context_combine.drawImage(canvasImages[0],0,0,deviceSize.width,deviceSize.height);
+//         //     await context_combine.drawImage(canvasImages[1],0,0,deviceSize.width,deviceSize.height);
+//         //     await context_combine.drawImage(canvasImages[2],0,0,deviceSize.width,deviceSize.height);
+//         //     await context_combine.drawImage(canvasImages[3],0,0,deviceSize.width,deviceSize.height);
 
-//             // 画像を保存する
-//             const image = new Image();
-//             image.src = context_combine.canvas.toDataURL();
-//             const a = document.createElement("a");
-//             a.href = image.src;
-//             a.download = "arPhoto.png";
-//         }
+//         //     // 画像を保存する
+//         //     const image = new Image();
+//         //     image.src = context_combine.canvas.toDataURL();
+//         //     const a = document.createElement("a");
+//         //     a.href = image.src;
+//         //     a.download = "arPhoto.png";
+//         // }
 //     };
 
 //     return (
@@ -163,4 +162,4 @@
 //             </div>
 //         </>
 //     );
-// // }
+// }
