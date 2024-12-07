@@ -44,42 +44,7 @@ export default function ArPhoto() {
     //     "/images/charactors/battleGod/smileFull.PNG",
     //     "/images/charactors/battleGod/smileRock.PNG",
     // ];
-    // if(canvasRef_video != null && canvasRef_sisterBird != null && canvasRef_brotherBird != null && canvasRef_girl != null && canvasRef_god != null && canvasRef_combine != null){
-    //     const canvas_video = canvasRef_video.current;
-    //     const context_video = canvas_video?.getContext("2d");
     
-    //     const canvas_sisterBird = canvasRef_sisterBird.current;
-    //     const context_sisterBird = canvas_sisterBird?.getContext("2d");
-    
-    //     const canvas_brotherBird = canvasRef_brotherBird.current;
-    //     const context_brotherBird = canvas_brotherBird?.getContext("2d");
-    
-    //     const canvas_girl = canvasRef_girl.current;
-    //     const context_girl = canvas_girl?.getContext("2d");
-        
-    //     const canvas_god = canvasRef_god.current;
-    //     const context_god = canvas_god?.getContext("2d");
-        
-    //     const canvas_combine = canvasRef_combine.current;
-    //     const context_combine = canvas_combine?.getContext("2d");
-    // };
-    const canvas_video = canvasRef_video.current;
-    const context_video = canvas_video?.getContext("2d");
-    
-    const canvas_sisterBird = canvasRef_sisterBird.current;
-    const context_sisterBird = canvas_sisterBird?.getContext("2d");
-    
-    const canvas_brotherBird = canvasRef_brotherBird.current;
-    const context_brotherBird = canvas_brotherBird?.getContext("2d");
-    
-    const canvas_girl = canvasRef_girl.current;
-    const context_girl = canvas_girl?.getContext("2d");
-        
-    const canvas_god = canvasRef_god.current;
-    const context_god = canvas_god?.getContext("2d");
-        
-    const canvas_combine = canvasRef_combine.current;
-    const context_combine = canvas_combine?.getContext("2d");
     
     useEffect(()=>{
         setDeviceSize({width:window.innerWidth,height:window.innerHeight});
@@ -105,7 +70,23 @@ export default function ArPhoto() {
             }
         }
         startCamera();
+        const canvas_video = canvasRef_video.current;
+        const context_video = canvas_video.getContext("2d");
         
+        const canvas_sisterBird = canvasRef_sisterBird.current;
+        const context_sisterBird = canvas_sisterBird?.getContext("2d");
+        
+        const canvas_brotherBird = canvasRef_brotherBird.current;
+        const context_brotherBird = canvas_brotherBird?.getContext("2d");
+        
+        const canvas_girl = canvasRef_girl.current;
+        const context_girl = canvas_girl?.getContext("2d");
+            
+        const canvas_god = canvasRef_god.current;
+        const context_god = canvas_god?.getContext("2d");
+            
+        const canvas_combine = canvasRef_combine.current;
+        const context_combine = canvas_combine?.getContext("2d");
         
         if (!context_video) {
             throw new Error("context is not defined");
@@ -119,11 +100,11 @@ export default function ArPhoto() {
         };
         
         drawFrame();
-        context_sisterBird?.clearRect(0, 0, window.innerWidth, window.innerHeight)
+        context_sisterBird?.clearRect(0, 0, window.innerWidth, window.innerHeight);
         context_brotherBird?.clearRect(0, 0, window.innerWidth, window.innerHeight);
-        context_combine?.clearRect(0, 0, window.innerWidth, window.innerHeight)
-        context_girl?.clearRect(0, 0, window.innerWidth, window.innerHeight)
-        context_god?.clearRect(0, 0, window.innerWidth, window.innerHeight)
+        context_combine?.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        context_girl?.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        context_god?.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
     },[]);
     // const setCanvasImage = function(context:CanvasRenderingContext2D){
