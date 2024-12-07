@@ -17,7 +17,7 @@ export default function ArPhoto() {
     const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
 
     const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
-    const [isEditingMenuVisible, setIsEditingMenuVisible] = useState(true);
+    // const [isEditingMenuVisible, setIsEditingMenuVisible] = useState(true);
     // キャラクター画像のリスト
     const sisterBirdImageList : string[] = [
         "/images/charactors/sisterBird/open.png",
