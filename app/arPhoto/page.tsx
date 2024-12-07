@@ -157,10 +157,6 @@ export default function ArPhoto() {
             alert("撮影できませんでした");
         }
     }
-    const notShot = () => {
-        alert("撮影できませんでした");
-    }
-
     return (
         <>
             <div className="allContainer relative">
