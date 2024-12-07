@@ -101,29 +101,29 @@ export default function ArPhoto() {
             <div className="allContainer relative">
                 <NavBar />
                 {/* スマホの縦、横サイズのキャンバスを作成 */}
-                <video ref={videoRef} autoPlay={true} playsInline={true} muted={true} />
                 <canvas ref={canvasRef} width={deviceSize.width} height={deviceSize.height} />
                 <div className="editingMenu fixed bottom-0 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
                     {/* キャラクター設定UIをここに追加 */}
                     <div className="charactorSettingUI flex">
                         {/* {brotherBirdImageList.map((image,index)=>(
                             <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentBroImage)} />
-                        ))}
-                        {sisterBirdImageList.map((image,index)=>(
-                            <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentSisImage)} />
-                        ))}
-                        {girlImageList.map((image,index)=>(
-                            <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentGirlImage)} />
-                        ))}
-                        {battleGodImageList.map((image,index)=>(
-                            <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentGodImage)} />
-                        ))} */}
+                            ))}
+                            {sisterBirdImageList.map((image,index)=>(
+                                <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentSisImage)} />
+                                ))}
+                                {girlImageList.map((image,index)=>(
+                                    <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentGirlImage)} />
+                                    ))}
+                                    {battleGodImageList.map((image,index)=>(
+                                        <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentGodImage)} />
+                                        ))} */}
                     </div>
                     キャラクター設定UI
                     <button onClick={handleCapture} className="px-4 py-2 bg-blue-500 text-white rounded">
                         撮影
                     </button>
                 </div>
+                <video ref={videoRef} autoPlay={true} playsInline={true} muted={true} />
             </div>
         </>
     );
