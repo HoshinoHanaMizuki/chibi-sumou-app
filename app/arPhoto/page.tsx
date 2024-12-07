@@ -45,6 +45,24 @@ export default function ArPhoto() {
     //     "/images/charactors/battleGod/smileRock.PNG",
     // ];
 
+    const canvas_video = canvasRef_video.current;
+    const context_video = canvas_video?.getContext("2d");
+
+    const canvas_sisterBird = canvasRef_sisterBird.current;
+    const context_sisterBird = canvas_sisterBird?.getContext("2d");
+
+    const canvas_brotherBird = canvasRef_brotherBird.current;
+    const context_brotherBird = canvas_brotherBird?.getContext("2d");
+
+    const canvas_girl = canvasRef_girl.current;
+    const context_girl = canvas_girl?.getContext("2d");
+    
+    const canvas_god = canvasRef_god.current;
+    const context_god = canvas_god?.getContext("2d");
+    
+    const canvas_combine = canvasRef_combine.current;
+    const context_combine = canvas_combine?.getContext("2d");
+    
     useEffect(()=>{
         setDeviceSize({width:window.innerWidth,height:window.innerHeight});
         if(!videoRef.current) {
@@ -69,36 +87,20 @@ export default function ArPhoto() {
             }
         }
         startCamera();
-        const canvas_video = canvasRef_video.current;
-        const context_video = canvas_video.getContext("2d");
-
-        const canvas_sisterBird = canvasRef_sisterBird.current;
-        const context_sisterBird = canvas_sisterBird?.getContext("2d");
-        context_sisterBird?.clearRect(0, 0, deviceSize.width, deviceSize.height);
-
-        const canvas_brotherBird = canvasRef_brotherBird.current;
-        const context_brotherBird = canvas_brotherBird?.getContext("2d");
-        context_brotherBird?.clearRect(0, 0, deviceSize.width, deviceSize.height);
         
-        const canvas_girl = canvasRef_girl.current;
-        const context_girl = canvas_girl?.getContext("2d");
+        context_sisterBird?.clearRect(0, 0, deviceSize.width, deviceSize.height);
+        context_brotherBird?.clearRect(0, 0, deviceSize.width, deviceSize.height);
+        context_combine?.clearRect(0, 0, deviceSize.width, deviceSize.height);
         context_girl?.clearRect(0, 0, deviceSize.width, deviceSize.height);
-
-        const canvas_god = canvasRef_god.current;
-        const context_god = canvas_god?.getContext("2d");
         context_god?.clearRect(0, 0, deviceSize.width, deviceSize.height);
         
-        const canvas_combine = canvasRef_combine.current;
-        const context_combine = canvas_combine?.getContext("2d");
-        context_combine?.clearRect(0, 0, deviceSize.width, deviceSize.height);
-
         if (!context_video) {
             throw new Error("context is not defined");
         }
-
+        
         const drawFrame = () => {
             if (videoRef.current) {
-                context_video.drawImage(videoRef.current, 0, 0, canvas_video.width, canvas_video.height);
+                context_video.drawImage(videoRef.current, 0, 0, deviceSize.width, deviceSize.height);
             }
             requestAnimationFrame(drawFrame);
         };
@@ -106,22 +108,34 @@ export default function ArPhoto() {
         drawFrame();
 
     },[]);
-    const handleCapture = () => {
-        if (canvasRef_video.current && videoRef.current) {
-            // const canvas = canvasRef.current;
-            // const context = canvas.getContext("2d");
-            // if (context) {
-            //     // カメラ映像をキャンバスに描画
-            //     context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+    const setCanvasImage = function(context:CanvasRenderingContext2D){
+        let image = new Image();
+        image.src = context.canvas.toDataURL();
+        return image;
+        
+    };
+    const handleCapture = async () => {
+        if(context_sisterBird != null && context_brotherBird != null && context_girl != null && context_god != null && context_combine != null){
+            let canvasImages : HTMLImageElement[] =[
+                await setCanvasImage(context_sisterBird),
+                await setCanvasImage(context_brotherBird),
+                await setCanvasImage(context_girl),
+                await setCanvasImage(context_god)
+            ];
+            await context_combine.drawImage(canvasImages[0],0,0,deviceSize.width,deviceSize.height);
+            await context_combine.drawImage(canvasImages[1],0,0,deviceSize.width,deviceSize.height);
+            await context_combine.drawImage(canvasImages[2],0,0,deviceSize.width,deviceSize.height);
+            await context_combine.drawImage(canvasImages[3],0,0,deviceSize.width,deviceSize.height);
 
-            //     // 最後にキャンバスを画像として保存
-            //     const dataUrl = canvas.toDataURL("image/png");
-            //     alert(`撮影された画像のデータURL: ${dataUrl}`);
-            //     // 画像を端末にダウンロード
-
-            // }
+            // 画像を保存する
+            const image = new Image();
+            image.src = context_combine.canvas.toDataURL();
+            const a = document.createElement("a");
+            a.href = image.src;
+            a.download = "arPhoto.png";
         }
     };
+
     return (
         <>
             <div className="allContainer relative">
@@ -138,18 +152,7 @@ export default function ArPhoto() {
                 <div className="editingMenu fixed bottom-0 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
                     {/* キャラクター設定UIをここに追加 */}
                     <div className="charactorSettingUI flex">
-                        {/* {brotherBirdImageList.map((image,index)=>(
-                            <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentBroImage)} />
-                            ))}
-                            {sisterBirdImageList.map((image,index)=>(
-                                <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentSisImage)} />
-                                ))}
-                                {girlImageList.map((image,index)=>(
-                                    <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentGirlImage)} />
-                                    ))}
-                                    {battleGodImageList.map((image,index)=>(
-                                        <Image alt="" key={index} src={image} width={deviceSize.width/7} height={70} onClick={()=>setCharaImage(image,setCurrentGodImage)} />
-                                        ))} */}
+
                     </div>
                     キャラクター設定UI
                     <button onClick={handleCapture} className="px-4 py-2 bg-blue-500 text-white rounded">
