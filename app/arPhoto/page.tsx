@@ -115,31 +115,73 @@ export default function ArPhoto() {
         return image;
         
     };
-    const handleCapture = async (
-        context_video:CanvasRenderingContext2D,
-        context_sisterBird:CanvasRenderingContext2D,context_brotherBird:CanvasRenderingContext2D,
-        context_girl: CanvasRenderingContext2D,context_god: CanvasRenderingContext2D,
-        context_combine: CanvasRenderingContext2D) => {
-        if(context_sisterBird != null && context_brotherBird != null && context_girl != null && context_god != null && context_combine != null){
-            const canvasImages : HTMLImageElement[] =[
-                await setCanvasImage(context_video),
-                await setCanvasImage(context_sisterBird),
-                await setCanvasImage(context_brotherBird),
-                await setCanvasImage(context_girl),
-                await setCanvasImage(context_god)
-            ];
-            await context_combine.drawImage(canvasImages[0],0,0,deviceSize.width,deviceSize.height);
-            await context_combine.drawImage(canvasImages[1],0,0,deviceSize.width,deviceSize.height);
-            await context_combine.drawImage(canvasImages[2],0,0,deviceSize.width,deviceSize.height);
-            await context_combine.drawImage(canvasImages[3],0,0,deviceSize.width,deviceSize.height);
-            await context_combine.drawImage(canvasImages[4],0,0,deviceSize.width,deviceSize.height);
+    // const handleCapture = async (
+    //     context_video:CanvasRenderingContext2D,
+    //     context_sisterBird:CanvasRenderingContext2D,context_brotherBird:CanvasRenderingContext2D,
+    //     context_girl: CanvasRenderingContext2D,context_god: CanvasRenderingContext2D,
+    //     context_combine: CanvasRenderingContext2D) => {
+    //     if(context_sisterBird != null && context_brotherBird != null && context_girl != null && context_god != null && context_combine != null){
+    //         const canvasImages : HTMLImageElement[] =[
+    //             await setCanvasImage(context_video),
+    //             await setCanvasImage(context_sisterBird),
+    //             await setCanvasImage(context_brotherBird),
+    //             await setCanvasImage(context_girl),
+    //             await setCanvasImage(context_god)
+    //         ];
+    //         await context_combine.drawImage(canvasImages[0],0,0,deviceSize.width,deviceSize.height);
+    //         await context_combine.drawImage(canvasImages[1],0,0,deviceSize.width,deviceSize.height);
+    //         await context_combine.drawImage(canvasImages[2],0,0,deviceSize.width,deviceSize.height);
+    //         await context_combine.drawImage(canvasImages[3],0,0,deviceSize.width,deviceSize.height);
+    //         await context_combine.drawImage(canvasImages[4],0,0,deviceSize.width,deviceSize.height);
 
-            // 画像を保存する
-            const image = new Image();
-            image.src = context_combine.canvas.toDataURL();
+    //         // 画像を保存する
+    //         const image = new Image();
+    //         image.src = context_combine.canvas.toDataURL();
+    //         const a = document.createElement("a");
+    //         a.href = image.src;
+    //         a.download = "arPhoto.png";
+    //     }
+    // };
+
+
+
+    const handleCapture = async (
+        context_video: CanvasRenderingContext2D,
+        context_sisterBird: CanvasRenderingContext2D,
+        context_brotherBird: CanvasRenderingContext2D,
+        context_girl: CanvasRenderingContext2D,
+        context_god: CanvasRenderingContext2D,
+        context_combine: CanvasRenderingContext2D
+    ) => {
+        try {
+            const drawContextToCanvas = (context: CanvasRenderingContext2D, targetContext: CanvasRenderingContext2D) => {
+                const image = new Image();
+                image.src = context.canvas.toDataURL();
+                image.onload = () => {
+                    targetContext.drawImage(image, 0, 0, deviceSize.width, deviceSize.height);
+                };
+            };
+    
+            // 各コンテキストを `context_combine` に描画
+            drawContextToCanvas(context_video, context_combine);
+            drawContextToCanvas(context_sisterBird, context_combine);
+            drawContextToCanvas(context_brotherBird, context_combine);
+            drawContextToCanvas(context_girl, context_combine);
+            drawContextToCanvas(context_god, context_combine);
+    
+            // 少し遅延を入れて、描画完了を待つ（非同期的な描画のため）
+            await new Promise((resolve) => setTimeout(resolve, 500));
+    
+            // 画像データを生成
+            const imageDataUrl = context_combine.canvas.toDataURL("image/png");
+    
+            // ダウンロードリンクを生成してクリック
             const a = document.createElement("a");
-            a.href = image.src;
+            a.href = imageDataUrl;
             a.download = "arPhoto.png";
+            a.click();
+        } catch (error) {
+            console.error("Error capturing photo:", error);
         }
     };
 
