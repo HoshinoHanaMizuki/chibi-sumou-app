@@ -298,7 +298,7 @@ export default function ArPhoto() {
                         </>
                     )}  
                 </div>
-                <button onClick={shot} className="bottom-0 left-0 right-0 px-4 py-2 bg-blue-500 text-white rounded">撮影</button>
+                <button onClick={shot} className="fixed bottom-0 left-0 right-0 px-4 py-2 bg-blue-500 text-white rounded">撮影</button>
                 <video ref={videoRef} autoPlay={true} playsInline={true} muted={true} />
             </div>
         </>
