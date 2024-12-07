@@ -20,34 +20,34 @@ export default function ArPhoto() {
 
     const [isEditingMenuVisible, setIsEditingMenuVisible] = useState(true);
     // キャラクター画像のリスト
-    const girlImageList : string[] = [
-        "/images/charactors/girl/normal.png",
-        "/images/charactors/girl/normalWithOp.png",
-        "/images/charactors/girl/puku.png",
-        "/images/charactors/girl/winkWithOp.png",
-        "/images/charactors/girl/winkWithCl.png"
-    ];
-    const brotherBirdImageList : string[] = [
-        "/images/charactors/brotherBird/normal.png",
-        "/images/charactors/brotherBird/cool.png",
-        "/images/charactors/brotherBird/shiny.png"
-    ];
     const sisterBirdImageList : string[] = [
         "/images/charactors/sisterBird/open.png",
         "/images/charactors/sisterBird/close.png",
         "/images/charactors/sisterBird/shock.png",
         "/images/charactors/sisterBird/smile.png"
     ];
-    const battleGodImageList : string[] = [
-        "/images/charactors/battleGod/normal.PNG",
-        "/images/charactors/battleGod/normalOura.PNG",
-        "/images/charactors/battleGod/normalFull.PNG",
-        "/images/charactors/battleGod/normalRock.PNG",
-        "/images/charactors/battleGod/smile.PNG",
-        "/images/charactors/battleGod/smileOura.PNG",
-        "/images/charactors/battleGod/smileFull.PNG",
-        "/images/charactors/battleGod/smileRock.PNG",
+    const brotherBirdImageList : string[] = [
+        "/images/charactors/brotherBird/normal.png",
+        "/images/charactors/brotherBird/cool.png",
+        "/images/charactors/brotherBird/shiny.png"
     ];
+    // const girlImageList : string[] = [
+    //     "/images/charactors/girl/normal.png",
+    //     "/images/charactors/girl/normalWithOp.png",
+    //     "/images/charactors/girl/puku.png",
+    //     "/images/charactors/girl/winkWithOp.png",
+    //     "/images/charactors/girl/winkWithCl.png"
+    // ];
+    // const battleGodImageList : string[] = [
+    //     "/images/charactors/battleGod/normal.PNG",
+    //     "/images/charactors/battleGod/normalOura.PNG",
+    //     "/images/charactors/battleGod/normalFull.PNG",
+    //     "/images/charactors/battleGod/normalRock.PNG",
+    //     "/images/charactors/battleGod/smile.PNG",
+    //     "/images/charactors/battleGod/smileOura.PNG",
+    //     "/images/charactors/battleGod/smileFull.PNG",
+    //     "/images/charactors/battleGod/smileRock.PNG",
+    // ];
     
     
     useEffect(()=>{
