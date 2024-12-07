@@ -14,7 +14,7 @@ export default function ArPhoto() {
     // const [currentBroImage,setCurrentBroImage] = useState<string | null>(null);
     // const [currentSisImage,setCurrentSisImage] = useState<string | null>(null);
     // const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
-    const [captureFunc,setCaptureFunc] = useState<() => Promise<void> | null>();
+    // const [captureFunc,setCaptureFunc] = useState<() => Promise<void> | null>();
     const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
     // キャラクター画像のリスト
     // const girlImageList : string[] = [
@@ -48,7 +48,6 @@ export default function ArPhoto() {
     
     
     useEffect(()=>{
-        setDeviceSize({width:window.innerWidth,height:window.innerHeight});
         if(!videoRef.current) {
             throw new Error("videoRef is not defined");
         }
@@ -107,39 +106,39 @@ export default function ArPhoto() {
         context_girl?.clearRect(0, 0, window.innerWidth, window.innerHeight);
         context_god?.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-        const handleCapture = async () => {
-            if(context_sisterBird != null && context_brotherBird != null && context_girl != null && context_god != null && context_combine != null){
-                const canvasImages : HTMLImageElement[] =[
-                    await setCanvasImage(context_sisterBird),
-                    await setCanvasImage(context_brotherBird),
-                    await setCanvasImage(context_girl),
-                    await setCanvasImage(context_god)
-                ];
-                await context_combine.drawImage(canvasImages[0],0,0,deviceSize.width,deviceSize.height);
-                await context_combine.drawImage(canvasImages[1],0,0,deviceSize.width,deviceSize.height);
-                await context_combine.drawImage(canvasImages[2],0,0,deviceSize.width,deviceSize.height);
-                await context_combine.drawImage(canvasImages[3],0,0,deviceSize.width,deviceSize.height);
+        // const handleCapture = async () => {
+        //     if(context_sisterBird != null && context_brotherBird != null && context_girl != null && context_god != null && context_combine != null){
+        //         const canvasImages : HTMLImageElement[] =[
+        //             await setCanvasImage(context_sisterBird),
+        //             await setCanvasImage(context_brotherBird),
+        //             await setCanvasImage(context_girl),
+        //             await setCanvasImage(context_god)
+        //         ];
+        //         await context_combine.drawImage(canvasImages[0],0,0,deviceSize.width,deviceSize.height);
+        //         await context_combine.drawImage(canvasImages[1],0,0,deviceSize.width,deviceSize.height);
+        //         await context_combine.drawImage(canvasImages[2],0,0,deviceSize.width,deviceSize.height);
+        //         await context_combine.drawImage(canvasImages[3],0,0,deviceSize.width,deviceSize.height);
     
-                // 画像を保存する
-                const image = new Image();
-                image.src = context_combine.canvas.toDataURL();
-                const a = document.createElement("a");
-                a.href = image.src;
-                a.download = "arPhoto.png";
-            }
-            else{
-                alert("撮れてない");
-            }
-        };
-        setCaptureFunc(handleCapture);
+        //         // 画像を保存する
+        //         const image = new Image();
+        //         image.src = context_combine.canvas.toDataURL();
+        //         const a = document.createElement("a");
+        //         a.href = image.src;
+        //         a.download = "arPhoto.png";
+        //     }
+        //     else{
+        //         alert("撮れてない");
+        //     }
+        // };
+        // setCaptureFunc(handleCapture);
 
     },[]);
-    const setCanvasImage = function(context:CanvasRenderingContext2D){
-        const image = new Image();
-        image.src = context.canvas.toDataURL();
-        return image;
+    // const setCanvasImage = function(context:CanvasRenderingContext2D){
+    //     const image = new Image();
+    //     image.src = context.canvas.toDataURL();
+    //     return image;
         
-    };
+    // };
     const notShot = () => {
         alert("撮影できませんでした");
     }
