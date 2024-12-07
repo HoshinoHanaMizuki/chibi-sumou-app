@@ -197,24 +197,19 @@ export default function ArPhoto() {
                     <canvas className="absolute top-0 left-0" ref={canvasRef_brotherBird} width={deviceSize.width} height={deviceSize.height} />
                     <canvas className="absolute top-0 left-0" ref={canvasRef_girl} width={deviceSize.width} height={deviceSize.height} />
                     <canvas className="absolute top-0 left-0" ref={canvasRef_god} width={deviceSize.width} height={deviceSize.height} />
-                    <canvas className="absolute top-0 left-0" ref={canvasRef_combine} width={deviceSize.width} height={deviceSize.height} />
+                    {/* <canvas className="absolute top-0 left-0" ref={canvasRef_combine} width={deviceSize.width} height={deviceSize.height} /> */}
                 </div>
                 <div className="editingMenu fixed bottom-10 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
-                    <div className="fixed bottom-60 right-4 flex space-x-2">
-                        <button onClick={toggleEditingMenu} className="bg-gray-200 p-2 rounded">
-                            {isEditingMenuVisible ? '✖️' : '🚪'}
-                        </button>
-                    </div>
                     {/*キャラクター設定UIをここに追加 */}
-                    <div className="charactorSettingUI bottom-32 flex justify-center space-x-4 overflow-x-auto">
+                    <div className="charactorSettingUI w-screen bottom-32 flex justify-center space-x-4 overflow-x-scroll">
                         {sisterBirdImageList.map((image, index) => (
                             <img
                                 key={index}
                                 src={image}
                                 alt={`Sister Bird ${index + 1}`}
-                                width={deviceSize.width / 7}
-                                height={deviceSize.width / 7}
-                                className="h-auto cursor-pointer"
+                                width={100}
+                                height={100}
+                                className="h-auto"
                                 onClick={() => setCurrentSisterBirdImage(image)}
                             />
                         ))}
@@ -225,7 +220,7 @@ export default function ArPhoto() {
                                 alt={`Brother Bird ${index + 1}`}
                                 width={deviceSize.width / 6}
                                 height={deviceSize.height / 6}
-                                className="h-auto cursor-pointer"
+                                className="h-auto"
                                 onClick={() => setCurrentBrotherBirdImage(image)}
                             />
                         ))}
@@ -234,9 +229,9 @@ export default function ArPhoto() {
                                 key={index}
                                 src={image}
                                 alt={`Girl ${index + 1}`}
-                                width={deviceSize.width / 6}
-                                height={deviceSize.height / 6}
-                                className="h-auto cursor-pointer"
+                                width={100}
+                                height={100}
+                                className="h-auto"
                                 onClick={() => setCurrentGirlImage(image)}
                             />
                         ))}
@@ -245,9 +240,9 @@ export default function ArPhoto() {
                                 key={index}
                                 src={image}
                                 alt={`Battle God ${index + 1}`}
-                                width={deviceSize.width / 6}
-                                height={deviceSize.height / 6}
-                                className="h-auto cursor-pointer"
+                                width={100}
+                                height={100}
+                                className="h-auto"
                                 onClick={() => setCurrentGodImage(image)}
                             />
                         ))}
