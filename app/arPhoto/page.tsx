@@ -10,11 +10,15 @@ export default function ArPhoto() {
     const canvasRef_god = useRef<HTMLCanvasElement>(null);
     const canvasRef_combine = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
+
     const [currentGirlImage,setCurrentGirlImage] = useState<string | null>(null);
     const [currentBrotherBirdImage,setCurrentBrotherBirdImage] = useState<string | null>(null);
     const [currentSisterBirdImage,setCurrentSisterBirdImage] = useState<string | null>(null);
     const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
+
     const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
+
+    const [isEditingMenuVisible, setIsEditingMenuVisible] = useState(true);
     // キャラクター画像のリスト
     const girlImageList : string[] = [
         "/images/charactors/girl/normal.png",
@@ -64,7 +68,7 @@ export default function ArPhoto() {
                 if (videoRef.current) {
                     videoRef.current.srcObject = stream;
                 }
-                alert("カメラが起動しました");
+                // alert("カメラが起動しました");
             } catch (err) {
                 console.error("Error accessing camera: ", err);
             }
@@ -213,6 +217,10 @@ export default function ArPhoto() {
             alert("撮影できませんでした");
         }
     }
+
+    const toggleEditingMenu = () => {
+        setIsEditingMenuVisible(!isEditingMenuVisible);
+    };
     return (
         <>
             <div className="allContainer relative">
@@ -227,59 +235,70 @@ export default function ArPhoto() {
                     <canvas className="absolute top-0 left-0" ref={canvasRef_combine} width={deviceSize.width} height={deviceSize.height} />
                 </div>
                 <div className="editingMenu fixed bottom-0 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
-                    {/* キャラクター設定UIをここに追加 */}
-                    <div className="charactorSettingUI fixed bottom-0 left-0 right-0 bg-white p-4 flex justify-center space-x-4 overflow-x-auto">
-                        {/* キャラクター設定UIをここに追加 */}
-                        {sisterBirdImageList.map((image, index) => (
-                            <img
-                                key={index}
-                                src={image}
-                                alt={`Sister Bird ${index + 1}`}
-                                width={deviceSize.width / 7}
-                                height={deviceSize.width / 7}
-                                className="h-auto cursor-pointer"
-                                onClick={() => setCurrentSisterBirdImage(image)}
-                            />
-                        ))}
-                        {brotherBirdImageList.map((image, index) => (
-                            <img
-                                key={index}
-                                src={image}
-                                alt={`Brother Bird ${index + 1}`}
-                                width={deviceSize.width / 7}
-                                height={deviceSize.width / 7}
-                                className="h-auto cursor-pointer"
-                                onClick={() => setCurrentBrotherBirdImage(image)}
-                            />
-                        ))}
-                        {girlImageList.map((image, index) => (
-                            <img
-                                key={index}
-                                src={image}
-                                alt={`Girl ${index + 1}`}
-                                width={deviceSize.width / 7}
-                                height={deviceSize.width / 7}
-                                className="h-auto cursor-pointer"
-                                onClick={() => setCurrentGirlImage(image)}
-                            />
-                        ))}
-                        {battleGodImageList.map((image, index) => (
-                            <img
-                                key={index}
-                                src={image}
-                                alt={`Battle God ${index + 1}`}
-                                width={deviceSize.width / 7}
-                                height={deviceSize.width / 7}
-                                className="h-auto cursor-pointer"
-                                onClick={() => setCurrentGodImage(image)}
-                            />
-                        ))}
+                    <div className="fixed top-4 right-4 flex space-x-2">
+                        <button onClick={toggleEditingMenu} className="bg-gray-200 p-2 rounded">
+                            {isEditingMenuVisible ? '✖️' : '🚪'}
+                        </button>
                     </div>
-                    キャラクター設定UI
-                    <button onClick={shot} className="px-4 py-2 bg-blue-500 text-white rounded">
-                        撮影
-                    </button>
+                    {isEditingMenuVisible && (
+                        <>
+                            {/* キャラクター設定UIをここに追加 */}
+                            <div className="charactorSettingUI fixed bottom-0 left-0 right-0 p-4 flex justify-center space-x-4 overflow-x-auto">
+                                <div className="fixed top-4 right-4 flex space-x-2">
+                                    <button onClick={toggleEditingMenu} className="bg-gray-200 p-2 rounded">
+                                        {isEditingMenuVisible ? '✖️' : '🚪'}
+                                    </button>
+                                </div>
+                                {/* キャラクター設定UIをここに追加 */}
+                                {sisterBirdImageList.map((image, index) => (
+                                    <img
+                                        key={index}
+                                        src={image}
+                                        alt={`Sister Bird ${index + 1}`}
+                                        width={deviceSize.width / 7}
+                                        height={deviceSize.width / 7}
+                                        className="h-auto cursor-pointer"
+                                        onClick={() => setCurrentSisterBirdImage(image)}
+                                    />
+                                ))}
+                                {brotherBirdImageList.map((image, index) => (
+                                    <img
+                                        key={index}
+                                        src={image}
+                                        alt={`Brother Bird ${index + 1}`}
+                                        width={deviceSize.width / 7}
+                                        height={deviceSize.width / 7}
+                                        className="h-auto cursor-pointer"
+                                        onClick={() => setCurrentBrotherBirdImage(image)}
+                                    />
+                                ))}
+                                {girlImageList.map((image, index) => (
+                                    <img
+                                        key={index}
+                                        src={image}
+                                        alt={`Girl ${index + 1}`}
+                                        width={deviceSize.width / 7}
+                                        height={deviceSize.width / 7}
+                                        className="h-auto cursor-pointer"
+                                        onClick={() => setCurrentGirlImage(image)}
+                                    />
+                                ))}
+                                {battleGodImageList.map((image, index) => (
+                                    <img
+                                        key={index}
+                                        src={image}
+                                        alt={`Battle God ${index + 1}`}
+                                        width={deviceSize.width / 7}
+                                        height={deviceSize.width / 7}
+                                        className="h-auto cursor-pointer"
+                                        onClick={() => setCurrentGodImage(image)}
+                                    />
+                                ))}
+                            </div>
+                        </>
+                    )}  
                 </div>
+                <button onClick={shot} className="px-4 py-2 bg-blue-500 text-white rounded">撮影</button>
                 <video ref={videoRef} autoPlay={true} playsInline={true} muted={true} />
             </div>
         </>
