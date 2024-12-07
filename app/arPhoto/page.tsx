@@ -119,9 +119,9 @@ export default function ArPhoto() {
         };
 
         drawCanvasImage(context_sisterBird ?? null, currentSisterBirdImage,0,0);
-        drawCanvasImage(context_brotherBird ?? null, currentBrotherBirdImage,0.3*window.innerWidth,0);
-        drawCanvasImage(context_girl ?? null, currentGirlImage,0,0.3*window.innerHeight);
-        drawCanvasImage(context_god ?? null, currentGodImage,0.3*window.innerWidth,0.3*window.innerHeight);
+        drawCanvasImage(context_brotherBird ?? null, currentBrotherBirdImage,0.5*window.innerWidth,0);
+        drawCanvasImage(context_girl ?? null, currentGirlImage,0,0.5*window.innerHeight);
+        drawCanvasImage(context_god ?? null, currentGodImage,0.5*window.innerWidth,0.5*window.innerHeight);
 
         
     },[currentSisterBirdImage,currentBrotherBirdImage,currentGirlImage,currentGodImage]);
