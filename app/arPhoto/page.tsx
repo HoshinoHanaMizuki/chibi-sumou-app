@@ -126,7 +126,9 @@ export default function ArPhoto() {
                 const a = document.createElement("a");
                 a.href = image.src;
                 a.download = "arPhoto.png";
-                alert("画像を保存しました");
+            }
+            else{
+                alert("撮れてない");
             }
         };
         setCaptureFunc(handleCapture);
