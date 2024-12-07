@@ -113,7 +113,7 @@
 //                 img.onload = () => {
 //                     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 //                     if(context != null && context != undefined){
-//                         context.drawImage(img, window.innerWidth/4, window.innerHeight/4, window.innerWidth/2, window.innerHeight/2);
+//                         context.drawImage(img, 0.15*window.innerWidth, 0.15*window.innerHeight, window.innerWidth*0.7, window.innerHeight*0.7);
 //                     }
 //                 };
 //             }
