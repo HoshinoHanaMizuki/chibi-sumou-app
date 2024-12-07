@@ -85,8 +85,8 @@ export default function ArPhoto() {
         const canvas_god = canvasRef_god.current;
         const context_god = canvas_god?.getContext("2d");
             
-        const canvas_combine = canvasRef_combine.current;
-        const context_combine = canvas_combine?.getContext("2d");
+        // const canvas_combine = canvasRef_combine.current;
+        // const context_combine = canvas_combine?.getContext("2d");
         
         if (!context_video) {
             throw new Error("context is not defined");
