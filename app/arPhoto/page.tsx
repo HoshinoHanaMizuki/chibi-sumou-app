@@ -204,7 +204,7 @@ export default function ArPhoto() {
                                 src={image}
                                 alt={`Sister Bird ${index + 1}`}
                                 width={100}
-                                height={100}
+                                height={60}
                                 className="h-auto"
                                 onClick={() => setCurrentSisterBirdImage(image)}
                             />
@@ -214,21 +214,19 @@ export default function ArPhoto() {
                                 key={index}
                                 src={image}
                                 alt={`Brother Bird ${index + 1}`}
-                                width={deviceSize.width / 6}
-                                height={deviceSize.height / 6}
+                                width={100}
+                                height={60}
                                 className="h-auto"
                                 onClick={() => setCurrentBrotherBirdImage(image)}
                             />
                         ))}
-                    </div>
-                    <div className="charactorSettingUI w-screen bottom-32 flex justify-center space-x-4 overflow-x-scroll">
                         {girlImageList.map((image, index) => (
                             <img
                                 key={index}
                                 src={image}
                                 alt={`Girl ${index + 1}`}
                                 width={100}
-                                height={100}
+                                height={60}
                                 className="h-auto"
                                 onClick={() => setCurrentGirlImage(image)}
                             />
@@ -239,7 +237,7 @@ export default function ArPhoto() {
                                 src={image}
                                 alt={`Battle God ${index + 1}`}
                                 width={100}
-                                height={100}
+                                height={60}
                                 className="h-auto"
                                 onClick={() => setCurrentGodImage(image)}
                             />
