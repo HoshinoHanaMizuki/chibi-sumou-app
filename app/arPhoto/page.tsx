@@ -235,74 +235,75 @@ export default function ArPhoto() {
                     <canvas className="absolute top-0 left-0" ref={canvasRef_combine} width={deviceSize.width} height={deviceSize.height} />
                 </div>
                 <div className="editingMenu fixed bottom-0 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
-                    <div className="fixed top-4 right-4 flex space-x-2">
+                    <div className="fixed bottom-4 right-4 flex space-x-2">
                         <button onClick={toggleEditingMenu} className="bg-gray-200 p-2 rounded">
                             {isEditingMenuVisible ? '✖️' : '🚪'}
                         </button>
                     </div>
-                    {isEditingMenuVisible && (
-                        <>
-                            {/* キャラクター設定UIをここに追加 */}
-                            <div className="charactorSettingUI fixed bottom-0 left-0 right-0 p-4 flex justify-center space-x-4 overflow-x-auto">
-                                <div className="fixed top-4 right-4 flex space-x-2">
-                                    <button onClick={toggleEditingMenu} className="bg-gray-200 p-2 rounded">
-                                        {isEditingMenuVisible ? '✖️' : '🚪'}
-                                    </button>
-                                </div>
-                                {/* キャラクター設定UIをここに追加 */}
-                                {sisterBirdImageList.map((image, index) => (
-                                    <img
-                                        key={index}
-                                        src={image}
-                                        alt={`Sister Bird ${index + 1}`}
-                                        width={deviceSize.width / 7}
-                                        height={deviceSize.width / 7}
-                                        className="h-auto cursor-pointer"
-                                        onClick={() => setCurrentSisterBirdImage(image)}
-                                    />
-                                ))}
-                                {brotherBirdImageList.map((image, index) => (
-                                    <img
-                                        key={index}
-                                        src={image}
-                                        alt={`Brother Bird ${index + 1}`}
-                                        width={deviceSize.width / 7}
-                                        height={deviceSize.width / 7}
-                                        className="h-auto cursor-pointer"
-                                        onClick={() => setCurrentBrotherBirdImage(image)}
-                                    />
-                                ))}
-                                {girlImageList.map((image, index) => (
-                                    <img
-                                        key={index}
-                                        src={image}
-                                        alt={`Girl ${index + 1}`}
-                                        width={deviceSize.width / 7}
-                                        height={deviceSize.width / 7}
-                                        className="h-auto cursor-pointer"
-                                        onClick={() => setCurrentGirlImage(image)}
-                                    />
-                                ))}
-                                {battleGodImageList.map((image, index) => (
-                                    <img
-                                        key={index}
-                                        src={image}
-                                        alt={`Battle God ${index + 1}`}
-                                        width={deviceSize.width / 7}
-                                        height={deviceSize.width / 7}
-                                        className="h-auto cursor-pointer"
-                                        onClick={() => setCurrentGodImage(image)}
-                                    />
-                                ))}
-                            </div>
-                        </>
-                    )}  
-                </div>
-                {!isEditingMenuVisible && (
+                      
                     <button onClick={shot} className="fixed bottom-0 left-0 right-0 px-4 py-2 bg-blue-500 text-white rounded">撮影</button>
-                )}
+                </div>
                 <video ref={videoRef} autoPlay={true} playsInline={true} muted={true} />
             </div>
         </>
     );
 }
+
+
+// {isEditingMenuVisible && (
+//     <>
+//         {/* キャラクター設定UIをここに追加 */}
+//         <div className="charactorSettingUI fixed bottom-0 left-0 right-0 p-4 flex justify-center space-x-4 overflow-x-auto">
+//             <div className="fixed top-4 right-4 flex space-x-2">
+//                 <button onClick={toggleEditingMenu} className="bg-gray-200 p-2 rounded">
+//                     {isEditingMenuVisible ? '✖️' : '🚪'}
+//                 </button>
+//             </div>
+//             {/* キャラクター設定UIをここに追加 */}
+//             {sisterBirdImageList.map((image, index) => (
+//                 <img
+//                     key={index}
+//                     src={image}
+//                     alt={`Sister Bird ${index + 1}`}
+//                     width={deviceSize.width / 7}
+//                     height={deviceSize.width / 7}
+//                     className="h-auto cursor-pointer"
+//                     onClick={() => setCurrentSisterBirdImage(image)}
+//                 />
+//             ))}
+//             {brotherBirdImageList.map((image, index) => (
+//                 <img
+//                     key={index}
+//                     src={image}
+//                     alt={`Brother Bird ${index + 1}`}
+//                     width={deviceSize.width / 7}
+//                     height={deviceSize.width / 7}
+//                     className="h-auto cursor-pointer"
+//                     onClick={() => setCurrentBrotherBirdImage(image)}
+//                 />
+//             ))}
+//             {girlImageList.map((image, index) => (
+//                 <img
+//                     key={index}
+//                     src={image}
+//                     alt={`Girl ${index + 1}`}
+//                     width={deviceSize.width / 7}
+//                     height={deviceSize.width / 7}
+//                     className="h-auto cursor-pointer"
+//                     onClick={() => setCurrentGirlImage(image)}
+//                 />
+//             ))}
+//             {battleGodImageList.map((image, index) => (
+//                 <img
+//                     key={index}
+//                     src={image}
+//                     alt={`Battle God ${index + 1}`}
+//                     width={deviceSize.width / 7}
+//                     height={deviceSize.width / 7}
+//                     className="h-auto cursor-pointer"
+//                     onClick={() => setCurrentGodImage(image)}
+//                 />
+//             ))}
+//         </div>
+//     </>
+// )}
