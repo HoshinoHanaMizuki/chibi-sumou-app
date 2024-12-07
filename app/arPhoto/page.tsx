@@ -234,14 +234,14 @@ export default function ArPhoto() {
                     <canvas className="absolute top-0 left-0" ref={canvasRef_god} width={deviceSize.width} height={deviceSize.height} />
                     <canvas className="absolute top-0 left-0" ref={canvasRef_combine} width={deviceSize.width} height={deviceSize.height} />
                 </div>
-                <div className="editingMenu fixed bottom-0 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
-                    <div className="fixed bottom-20 right-4 flex space-x-2">
+                <div className="editingMenu fixed bottom-10 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
+                    <div className="fixed bottom-40 right-4 flex space-x-2">
                         <button onClick={toggleEditingMenu} className="bg-gray-200 p-2 rounded">
                             {isEditingMenuVisible ? '✖️' : '🚪'}
                         </button>
                     </div>
                     {/*キャラクター設定UIをここに追加 */}
-                    <div className="charactorSettingUI bottom-14 flex justify-center space-x-4 overflow-x-auto">
+                    <div className="charactorSettingUI bottom-32 flex justify-center space-x-4 overflow-x-auto">
                         {sisterBirdImageList.map((image, index) => (
                             <img
                                 key={index}
@@ -258,8 +258,8 @@ export default function ArPhoto() {
                                 key={index}
                                 src={image}
                                 alt={`Brother Bird ${index + 1}`}
-                                width={deviceSize.width / 7}
-                                height={deviceSize.width / 7}
+                                width={deviceSize.width / 6}
+                                height={deviceSize.height / 6}
                                 className="h-auto cursor-pointer"
                                 onClick={() => setCurrentBrotherBirdImage(image)}
                             />
