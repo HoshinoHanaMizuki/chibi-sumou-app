@@ -11,43 +11,43 @@ export default function ArPhoto() {
     const canvasRef_combine = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
 
-    const [currentGirlImage,setCurrentGirlImage] = useState<string | null>(null);
-    const [currentBrotherBirdImage,setCurrentBrotherBirdImage] = useState<string | null>(null);
-    const [currentSisterBirdImage,setCurrentSisterBirdImage] = useState<string | null>(null);
-    const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
+    const [currentGirlImage,] = useState<string | null>(null);
+    const [currentBrotherBirdImage,] = useState<string | null>(null);
+    const [currentSisterBirdImage,] = useState<string | null>(null);
+    const [currentGodImage,] = useState<string | null>(null);
 
     const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
 
     const [isEditingMenuVisible, setIsEditingMenuVisible] = useState(true);
     // キャラクター画像のリスト
-    const girlImageList : string[] = [
-        "/images/charactors/girl/normal.png",
-        "/images/charactors/girl/normalWithOp.png",
-        "/images/charactors/girl/puku.png",
-        "/images/charactors/girl/winkWithOp.png",
-        "/images/charactors/girl/winkWithCl.png"
-    ];
-    const brotherBirdImageList : string[] = [
-        "/images/charactors/brotherBird/normal.png",
-        "/images/charactors/brotherBird/cool.png",
-        "/images/charactors/brotherBird/shiny.png"
-    ];
-    const sisterBirdImageList : string[] = [
-        "/images/charactors/sisterBird/open.png",
-        "/images/charactors/sisterBird/close.png",
-        "/images/charactors/sisterBird/shock.png",
-        "/images/charactors/sisterBird/smile.png"
-    ];
-    const battleGodImageList : string[] = [
-        "/images/charactors/battleGod/normal.PNG",
-        "/images/charactors/battleGod/normalOura.PNG",
-        "/images/charactors/battleGod/normalFull.PNG",
-        "/images/charactors/battleGod/normalRock.PNG",
-        "/images/charactors/battleGod/smile.PNG",
-        "/images/charactors/battleGod/smileOura.PNG",
-        "/images/charactors/battleGod/smileFull.PNG",
-        "/images/charactors/battleGod/smileRock.PNG",
-    ];
+    // const girlImageList : string[] = [
+    //     "/images/charactors/girl/normal.png",
+    //     "/images/charactors/girl/normalWithOp.png",
+    //     "/images/charactors/girl/puku.png",
+    //     "/images/charactors/girl/winkWithOp.png",
+    //     "/images/charactors/girl/winkWithCl.png"
+    // ];
+    // const brotherBirdImageList : string[] = [
+    //     "/images/charactors/brotherBird/normal.png",
+    //     "/images/charactors/brotherBird/cool.png",
+    //     "/images/charactors/brotherBird/shiny.png"
+    // ];
+    // const sisterBirdImageList : string[] = [
+    //     "/images/charactors/sisterBird/open.png",
+    //     "/images/charactors/sisterBird/close.png",
+    //     "/images/charactors/sisterBird/shock.png",
+    //     "/images/charactors/sisterBird/smile.png"
+    // ];
+    // const battleGodImageList : string[] = [
+    //     "/images/charactors/battleGod/normal.PNG",
+    //     "/images/charactors/battleGod/normalOura.PNG",
+    //     "/images/charactors/battleGod/normalFull.PNG",
+    //     "/images/charactors/battleGod/normalRock.PNG",
+    //     "/images/charactors/battleGod/smile.PNG",
+    //     "/images/charactors/battleGod/smileOura.PNG",
+    //     "/images/charactors/battleGod/smileFull.PNG",
+    //     "/images/charactors/battleGod/smileRock.PNG",
+    // ];
     
     
     useEffect(()=>{
