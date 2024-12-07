@@ -112,7 +112,7 @@ export default function ArPhoto() {
                 img.onload = () => {
                     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
                     if (context != null && context != undefined) {
-                        context.drawImage(img, positionX, positionY, window.innerWidth * 0.7, window.innerHeight * 0.7);
+                        context.drawImage(img, positionX, positionY, window.innerWidth * 0.5, window.innerHeight * 0.5);
                     }
                 };
             }
