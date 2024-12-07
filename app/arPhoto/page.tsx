@@ -17,7 +17,7 @@ export default function ArPhoto() {
     const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
 
     const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
-    const [positions, setPositions] = useState({
+    const [positions, ] = useState({
         sisterBird: { x: 0, y: 0 },
         brotherBird: { x: 0.45 * window.innerWidth, y: 0 },
         girl: { x: 0, y: 0.45 * window.innerHeight },
