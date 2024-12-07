@@ -185,8 +185,9 @@ export default function ArPhoto() {
     }
 
     const visibleEditing = () => {
-        const buttonText = isEditingMenuVisible ? "❌" : "🚪";
         setIsEditingMenuVisible(!isEditingMenuVisible);
+        const buttonText = isEditingMenuVisible ? "❌" : "🚪";
+        setButtonText(buttonText);
     }
 
     return (
