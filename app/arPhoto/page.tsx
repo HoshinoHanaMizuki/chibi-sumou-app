@@ -15,7 +15,7 @@ export default function ArPhoto() {
     // const [currentSisImage,setCurrentSisImage] = useState<string | null>(null);
     // const [currentGodImage,setCurrentGodImage] = useState<string | null>(null);
     // const [captureFunc,setCaptureFunc] = useState<() => Promise<void> | null>();
-    const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
+    // const [deviceSize,setDeviceSize] = useState<{width:number,height:number}>({width:0,height:0});
     // キャラクター画像のリスト
     // const girlImageList : string[] = [
     //     "/images/charactors/girl/normal.png",
