@@ -109,12 +109,12 @@ export default function ArPhoto() {
 
         
     },[]);
-    const setCanvasImage = function(context:CanvasRenderingContext2D){
-        const image = new Image();
-        image.src = context.canvas.toDataURL();
-        return image;
+    // const setCanvasImage = function(context:CanvasRenderingContext2D){
+    //     const image = new Image();
+    //     image.src = context.canvas.toDataURL();
+    //     return image;
         
-    };
+    // };
     // const handleCapture = async (
     //     context_video:CanvasRenderingContext2D,
     //     context_sisterBird:CanvasRenderingContext2D,context_brotherBird:CanvasRenderingContext2D,
