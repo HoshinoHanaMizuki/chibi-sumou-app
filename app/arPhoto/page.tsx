@@ -193,7 +193,7 @@ export default function ArPhoto() {
                     <canvas className="absolute top-0 left-0" ref={canvasRef_brotherBird} width={deviceSize.width} height={deviceSize.height} />
                     <canvas className="absolute top-0 left-0" ref={canvasRef_girl} width={deviceSize.width} height={deviceSize.height} />
                     <canvas className="absolute top-0 left-0" ref={canvasRef_god} width={deviceSize.width} height={deviceSize.height} />
-                    {/* <canvas className="absolute top-0 left-0" ref={canvasRef_combine} width={deviceSize.width} height={deviceSize.height} /> */}
+                    <canvas className="absolute top-0 left-0" ref={canvasRef_combine} width={deviceSize.width} height={deviceSize.height} />
                 </div>
                 <div className="editingMenu fixed bottom-10 left-0 right-0 p-4 flex flex-col justify-center space-x-4">
                     {/*キャラクター設定UIをここに追加 */}
