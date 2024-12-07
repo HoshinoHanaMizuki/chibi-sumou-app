@@ -182,10 +182,6 @@ export default function ArPhoto() {
         }
     }
 
-    const toggleEditingMenu = () => {
-        setIsEditingMenuVisible(!isEditingMenuVisible);
-    };
-
     return (
         <>
             <div className="allContainer relative">
