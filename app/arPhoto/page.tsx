@@ -241,7 +241,7 @@ export default function ArPhoto() {
                         </button>
                     </div>
                     {/*キャラクター設定UIをここに追加 */}
-                    <div className="charactorSettingUI bottom-32 flex justify-center space-x-4">
+                    <div className="charactorSettingUI bottom-32 flex justify-center space-x-4 overflow-x-auto">
                         {sisterBirdImageList.map((image, index) => (
                             <img
                                 key={index}
