@@ -88,11 +88,11 @@ export default function ArPhoto() {
         }
         startCamera();
         
-        context_sisterBird?.clearRect(0, 0, deviceSize.width, deviceSize.height);
-        context_brotherBird?.clearRect(0, 0, deviceSize.width, deviceSize.height);
-        context_combine?.clearRect(0, 0, deviceSize.width, deviceSize.height);
-        context_girl?.clearRect(0, 0, deviceSize.width, deviceSize.height);
-        context_god?.clearRect(0, 0, deviceSize.width, deviceSize.height);
+        context_sisterBird?.clearRect(0, 0, window.innerWidth, window.innerHeight)
+        context_brotherBird?.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        context_combine?.clearRect(0, 0, window.innerWidth, window.innerHeight)
+        context_girl?.clearRect(0, 0, window.innerWidth, window.innerHeight)
+        context_god?.clearRect(0, 0, window.innerWidth, window.innerHeight)
         
         if (!context_video) {
             throw new Error("context is not defined");
@@ -100,7 +100,7 @@ export default function ArPhoto() {
         
         const drawFrame = () => {
             if (videoRef.current) {
-                context_video.drawImage(videoRef.current, 0, 0, deviceSize.width, deviceSize.height);
+                context_video.drawImage(videoRef.current, 0, 0, window.innerWidth, window.innerHeight);
             }
             requestAnimationFrame(drawFrame);
         };
@@ -109,7 +109,7 @@ export default function ArPhoto() {
 
     },[]);
     const setCanvasImage = function(context:CanvasRenderingContext2D){
-        let image = new Image();
+        const image = new Image();
         image.src = context.canvas.toDataURL();
         return image;
         
