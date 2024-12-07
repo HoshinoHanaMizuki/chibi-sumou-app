@@ -195,7 +195,7 @@ export default function ArPhoto() {
                     <canvas className="absolute top-0 left-0" ref={canvasRef_god} width={deviceSize.width} height={deviceSize.height} />
                     <canvas className="absolute top-0 left-0" ref={canvasRef_combine} width={deviceSize.width} height={deviceSize.height} />
                 </div>
-                <div className="charactorSettingUI fixed grid  w-screen bottom-32 space-x-4 overflow-x-scroll">
+                <div className="charactorSettingUI fixed flex justify-center  w-screen bottom-32 space-x-4 overflow-x-scroll">
                         {sisterBirdImageList.map((image, index) => (
                             <img
                                 key={index}
